@@ -18,6 +18,9 @@ const selectLabelColor = (indicator, outputString) => {
 
 // Function --> to console message in a better way
 const consoleLog = (indicator, message, moveToNext = false) => {
+  if (typeof indicator != "string" || typeof message != "string" || typeof moveToNext != "boolean") {
+    throw new Error("Invalid type passed to custom consoleLog");
+  }
   let spaceCalc = indicator.length > 6 ? "\t" : "\t\t";
   let outputString = indicator + ":" + spaceCalc + message;
 

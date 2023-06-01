@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, TableMap } from "./screens";
+import { Home, ProductMenu, TableMap } from "./screens";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -16,6 +16,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           {/* POS SCREENS */}
           <Route path="/pos/table" element={<TableMap />} />
+          <Route path="/pos/menu" element={<ProductMenu />} />
         </Routes>
       </Router>
     </>

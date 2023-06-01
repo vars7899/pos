@@ -20,9 +20,9 @@ const TableInformationSection = () => {
             <p className="text-2xl font-semibold">13</p>
           </div>
           {/* Seat div's */}
-          {Array.from({ length: 6 }, (_, i) => i).map((_, index) => (
+          {Array.from({ length: 12 }, (_, i) => i).map((_, index) => (
             <div
-              style={{ transform: `rotate(calc(360deg/${6} * ${index}))` }}
+              style={{ transform: `rotate(calc(360deg/${12} * ${index}))` }}
               className="absolute left-0 origin-[150px]  shadow-lg shadow-orange-600/20 flex flex-row"
             >
               <div className="bg-orange-600 rounded-lg p-1"></div>

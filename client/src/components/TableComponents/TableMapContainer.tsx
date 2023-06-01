@@ -31,6 +31,30 @@ const TableMapContainer = () => {
         <IndividualTable numberOfSeats={6} tableNumber={223} />
         <IndividualTable numberOfSeats={10} tableNumber={27} />
         <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={12} tableNumber={1} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={4} tableNumber={23} />
+        <IndividualTable numberOfSeats={6} tableNumber={223} />
+        <IndividualTable numberOfSeats={10} tableNumber={27} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={12} tableNumber={1} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={4} tableNumber={23} />
+        <IndividualTable numberOfSeats={6} tableNumber={223} />
+        <IndividualTable numberOfSeats={10} tableNumber={27} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={12} tableNumber={1} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={4} tableNumber={23} />
+        <IndividualTable numberOfSeats={6} tableNumber={223} />
+        <IndividualTable numberOfSeats={10} tableNumber={27} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={12} tableNumber={1} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
+        <IndividualTable numberOfSeats={4} tableNumber={23} />
+        <IndividualTable numberOfSeats={6} tableNumber={223} />
+        <IndividualTable numberOfSeats={10} tableNumber={27} />
+        <IndividualTable numberOfSeats={3} tableNumber={2} />
       </div>
     </div>
   );

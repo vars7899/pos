@@ -14,7 +14,7 @@ const CustomSideBar = ({ expandSidebar, toggleSidebar, options }: Props) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   return (
-    <div className="bg-white h-[100%] px-2 py-5 border-r-[1px]">
+    <div className="bg-white h-[100%] px-2 py-5 border-r-[1px] min-w-[100%]">
       <div className="mb-6 flex items-center">
         <div className="bg-slate-100 px-4 py-3 rounded-lg">
           <p className="text-slate-700 font-semibold">Rx</p>

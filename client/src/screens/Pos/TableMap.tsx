@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PosNavbar, SelectCategoryListContainer, TableMapContainer } from "../../components";
+import { PosNavbar, TableInformationSection, TableMapContainer } from "../../components";
 import { PosLayout } from "../../layouts";
 
 const TableMap = () => {
@@ -13,7 +13,7 @@ const TableMap = () => {
         </div>
         {selectedTable && (
           <div className="border-l-[1px]">
-            <p>no</p>
+            <TableInformationSection />
           </div>
         )}
       </div>

@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.iconOutlineBtn {
+  @apply border-[1px] rounded-lg px-3 py-2;
+}
+.centerOut {
+  @apply flex items-center justify-center;
+}

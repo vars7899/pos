@@ -1,10 +1,13 @@
 import { PosLayout } from "../../layouts";
-import { PosNavbar, ProductCluster, SelectCategoryListContainer } from "../../components";
-import { IconScan, IconEdit, IconTrash, IconReceipt, IconDiscount, IconGridDots } from "@tabler/icons-react";
+import {
+  OrderTableFeatures,
+  PosNavbar,
+  ProductCluster,
+  SelectCategoryListContainer,
+  OrderOverview,
+  OrderTotalSection,
+} from "../../components";
 import { Product, TableDetails } from "../../global/types";
-import { hideStringOverflow } from "../../functions/HideStringOverflow";
-import OrderOverview from "../../components/OrderComponents/OrderOverview";
-import { Currency } from "../../global/constants";
 
 const productList: Product[] = [
   {
@@ -191,11 +194,6 @@ const selectedTable: TableDetails = {
   },
 };
 
-const IconAttributes = {
-  strokeWidth: 1.25,
-  className: "cursor-pointer",
-};
-
 const ProductMenu = () => {
   return (
     <PosLayout isLoading={false}>
@@ -207,60 +205,12 @@ const ProductMenu = () => {
             <ProductCluster productList={productList} />
           </div>
         </div>
-        <div className="w-[100%] border-l-[1px]">
-          <div className="flex items-center justify-between border-b-[1px] px-4">
-            <div className="h-[70px] flex flex-col justify-center">
-              <p className="text-xl font-semibold">Table {selectedTable.tableNumber}</p>
-              <p className="capitalize text-xs text-slate-600 font-medium">
-                {hideStringOverflow("johnhansen flamingo")}
-              </p>
-            </div>
-            <div className="grid grid-cols-4 justify-stretch">
-              <div className="centerOut px-3">
-                <IconScan {...IconAttributes} />
-              </div>
-              <div className="centerOut px-2">
-                <IconEdit {...IconAttributes} />
-              </div>
-              <div className="centerOut px-2">
-                <IconReceipt {...IconAttributes} />
-              </div>
-              <div className="centerOut px-2">
-                <IconTrash {...IconAttributes} />
-              </div>
-            </div>
+        <div className="w-[100%] max-h-[100vh] border-l-[1px] flex flex-col justify-between">
+          <div>
+            <OrderTableFeatures selectedTable={selectedTable} />
+            <OrderOverview orderDetails={selectedTable.orderDetails} />
           </div>
-          <OrderOverview orderDetails={selectedTable.orderDetails} />
-          {/* Discount and add amount tab */}
-          <div className="grid grid-cols-2 border-[1px] divide-x-[1px]">
-            <button className="flex items-center justify-center py-3 text-emerald-600">
-              <IconDiscount {...IconAttributes} />
-              <p className="ml-2 font-semibold text-lg">Discount</p>
-            </button>
-            <button className="flex items-center justify-center py-3 text-purple-600">
-              <IconGridDots {...IconAttributes} />
-              <p className="ml-2 font-semibold text-lg">Add Amount</p>
-            </button>
-          </div>
-          {/* order price summary */}
-          <div className="px-4 py-1">
-            <div className="flex items-center justify-between py-1 font-semibold text-gray-400">
-              <p>Tax</p>
-              <p>{Currency + " " + 23.23}</p>
-            </div>
-            <div className="flex items-center justify-between py-1 font-semibold text-gray-400">
-              <p>Subtotal</p>
-              <p>{Currency + " " + 207.66}</p>
-            </div>
-            <div className="flex items-center justify-between py-1 font-semibold">
-              <p>Total</p>
-              <p>{Currency + " " + 230.89}</p>
-            </div>
-          </div>
-          {/* fire Order button */}
-          <button className="text-xl font-semibold tracking-wide flex items-center justify-center w-[100%] py-4 bg-indigo-100">
-            <p className="text-indigo-800">Fire Order</p>
-          </button>
+          <OrderTotalSection />
         </div>
       </div>
     </PosLayout>

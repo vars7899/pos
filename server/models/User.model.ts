@@ -1,4 +1,6 @@
-import mongoose, { InferSchemaType, Schema, model } from "mongoose";
+import { InferSchemaType, Schema, model } from "mongoose";
+import bcrypt from "bcrypt";
+const SALT_ROUNDS: number = 10;
 
 const UserSchema = new Schema(
   {
@@ -45,9 +47,15 @@ const UserSchema = new Schema(
       default: false,
     },
     address: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: Schema.Types.ObjectId,
       ref: "address",
     },
+    restaurant: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "restaurant",
+      },
+    ],
   },
   {
     timestamps: true,
@@ -55,6 +63,15 @@ const UserSchema = new Schema(
 );
 
 type IUser = InferSchemaType<typeof UserSchema>;
+// Pre functions
+UserSchema.pre("save", async function hashPassword(next) {
+  let password: any = this.password;
+  if (!this.isModified("password")) {
+    next();
+  }
+  this.password = await bcrypt.hash(password, SALT_ROUNDS);
+  next();
+});
 
 const User = model<IUser>("user", UserSchema);
 export default User;

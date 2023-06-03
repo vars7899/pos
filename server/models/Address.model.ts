@@ -1,15 +1,15 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, InferSchemaType } from "mongoose";
 
 const AddressSchema = new Schema(
   {
-    addressLine1: {
+    street: {
       type: String,
-      required: [true, "Address Line 1 is a required field"],
-      maxLength: [200, "Address Line 1 has a character limit of 200"],
+      required: [true, "Address street is a required field"],
+      maxLength: [200, "Address street has a character limit of 200"],
     },
-    addressLine2: {
+    addressLine: {
       type: String,
-      maxLength: [200, "Address Line 2 has a character limit of 200"],
+      maxLength: [200, "Address Line  has a character limit of 200"],
     },
     city: {
       type: String,
@@ -33,5 +33,7 @@ const AddressSchema = new Schema(
   }
 );
 
-const Address = model("address", AddressSchema);
+type IAddress = InferSchemaType<typeof AddressSchema>;
+
+const Address = model<IAddress>("address", AddressSchema);
 export default Address;

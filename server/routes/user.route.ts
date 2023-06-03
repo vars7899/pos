@@ -1,7 +1,8 @@
-// import { Router as ExpressRouter } from "express";
-// const Router = ExpressRouter();
+import { Router as ExpressRouter } from "express";
+import * as UserControllers from "../controllers/user.controller";
+const Router = ExpressRouter();
 
 // Router.route("/").post();
-// Router.route("/register").post();
+Router.route("/register").post(UserControllers.registerNewUser);
 
-// export default Router
+export default Router;

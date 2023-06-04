@@ -37,3 +37,22 @@ export interface TableDetails {
 }
 
 export type CurrencyType = string;
+
+// Registration Interface
+export interface NewUserData {
+  firstName: string;
+  lastName: string;
+  countryCode: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+  dob: string;
+  companySize: string;
+  // Address fields
+  street: string;
+  addressLine: string;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+}

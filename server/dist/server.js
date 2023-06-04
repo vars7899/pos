@@ -38,7 +38,7 @@ const handleError_1 = __importDefault(require("./middleware/handleError"));
 const user_route_1 = __importDefault(require("./routes/user.route"));
 const app = (0, express_1.default)();
 const PORT = validateEnv_1.default.PORT || 8080;
-const VERSION_STRING = "/api/v" + validateEnv_1.default.PORT;
+const VERSION_STRING = "/api/v1";
 // middleware
 app.use(express_1.default.json());
 app.use((0, morgan_1.default)("short"));
@@ -49,7 +49,7 @@ app.get(`/`, (_, res) => {
         message: "Register Ox Server is UP",
     });
 });
-app.use(`/api/v1/user`, user_route_1.default);
+app.use(`${VERSION_STRING}/user`, user_route_1.default);
 // Error Handling
 app.use((_, __, next) => next((0, http_errors_1.default)(404, "Requested endpoint not found")));
 app.use(handleError_1.default);

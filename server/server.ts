@@ -13,7 +13,7 @@ import userRoutes from "./routes/user.route";
 
 const app: Express = express();
 const PORT: number | string = env.PORT || 8080;
-const VERSION_STRING = "/api/v" + env.PORT;
+const VERSION_STRING = "/api/v1";
 
 // middleware
 app.use(express.json());
@@ -26,7 +26,7 @@ app.get(`/`, (_: Request, res: Response) => {
     message: "Register Ox Server is UP",
   });
 });
-app.use(`/api/v1/user`, userRoutes);
+app.use(`${VERSION_STRING}/user`, userRoutes);
 // Error Handling
 app.use((_: Request, __: Response, next: NextFunction) => next(createHttpError(404, "Requested endpoint not found")));
 app.use(handleError);

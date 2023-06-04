@@ -13,3 +13,7 @@ export { default as ProductCluster } from "./ProductComponents/ProductCluster";
 export { default as OrderOverview } from "./OrderComponents/OrderOverview";
 export { default as OrderTableFeatures } from "./OrderComponents/OrderTableFeatures";
 export { default as OrderTotalSection } from "./OrderComponents/OrderTotalSection";
+
+// Authentication Components
+export { default as GeneralInformationForm } from "./AuthenticationComponents/GeneralInformationForm";
+export { default as BusinessInformationForm } from "./AuthenticationComponents/BusinessInformationForm";

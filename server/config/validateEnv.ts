@@ -6,4 +6,5 @@ export default cleanEnv(process.env, {
   OTP_EXPIRATION_GAP: num(),
   OUTLOOK_EMAIL: str(),
   OUTLOOK_PASS: str(),
+  JWT_SECRET_KEY: str(),
 });

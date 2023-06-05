@@ -10,6 +10,7 @@ import { connectDB } from "./config/db";
 import { NextFunction } from "connect";
 import handleError from "./middleware/handleError";
 import userRoutes from "./routes/user.route";
+import cookieParser from "cookie-parser";
 
 const app: Express = express();
 const PORT: number | string = env.PORT || 8080;
@@ -18,6 +19,7 @@ const VERSION_STRING = "/api/v1";
 // middleware
 app.use(express.json());
 app.use(morgan("short"));
+app.use(cookieParser());
 
 // Routes
 app.get(`/`, (_: Request, res: Response) => {

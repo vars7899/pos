@@ -14,3 +14,8 @@ export interface IRegisterUser {
     postalCode: string;
   };
 }
+
+export interface LoginUserRequest {
+  email: string;
+  password: string;
+}

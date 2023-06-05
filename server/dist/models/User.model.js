@@ -12,10 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = require("mongoose");
+const mongoose_1 = __importDefault(require("mongoose"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const validateEnv_1 = __importDefault(require("../config/validateEnv"));
 const SALT_ROUNDS = 10;
-const UserSchema = new mongoose_1.Schema({
+const UserSchema = new mongoose_1.default.Schema({
     firstName: {
         type: String,
         required: [true, "First name is a required field"],
@@ -59,12 +61,12 @@ const UserSchema = new mongoose_1.Schema({
         default: false,
     },
     address: {
-        type: mongoose_1.Schema.Types.ObjectId,
+        type: mongoose_1.default.Schema.Types.ObjectId,
         ref: "address",
     },
     restaurant: [
         {
-            type: mongoose_1.Schema.Types.ObjectId,
+            type: mongoose_1.default.Schema.Types.ObjectId,
             ref: "restaurant",
         },
     ],
@@ -82,5 +84,18 @@ UserSchema.pre("save", function hashPassword(next) {
         next();
     });
 });
-const User = (0, mongoose_1.model)("user", UserSchema);
+// Generate Token
+UserSchema.methods.generateToken = function () {
+    // Creates a token that expires in 1 day
+    return jsonwebtoken_1.default.sign({ _id: this._id }, validateEnv_1.default.JWT_SECRET_KEY, {
+        expiresIn: "1d",
+    });
+};
+// Match password
+UserSchema.methods.matchPassword = function (givenPassword) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return yield bcrypt_1.default.compare(givenPassword, this.password);
+    });
+};
+const User = mongoose_1.default.model("user", UserSchema);
 exports.default = User;

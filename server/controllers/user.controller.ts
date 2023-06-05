@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { IRegisterUser } from "../global/types";
+import { IRegisterUser, LoginUserRequest } from "../global/types";
 import createHttpError from "http-errors";
 import Address from "../models/Address.model";
 import User from "../models/User.model";
@@ -7,7 +7,11 @@ import validateEmail from "../functions/validateEmail";
 import generateOtp from "../config/generateOtp";
 import env from "../config/validateEnv";
 import { sendEmail } from "../config/sendEmail";
+import sendToken from "../config/sendToken";
 
+// @desc      Register new user
+// @route     /user/register
+// @access    public
 export const registerNewUser: RequestHandler<{}, {}, IRegisterUser, {}> = async (req, res, next) => {
   const { firstName, lastName, email, password, dob, phoneNumber, address } = req.body;
 
@@ -55,11 +59,38 @@ export const registerNewUser: RequestHandler<{}, {}, IRegisterUser, {}> = async 
         <p>${otpValue}</p>
     </div>`
     );
+    // ! send response
+    sendToken(
+      res,
+      newUser,
+      201,
+      "User registered successfully, An OTP was sent to the provided email, please verify to continue"
+    );
+  } catch (error) {
+    next(error);
+  }
+};
 
-    res.status(200).json({
-      success: true,
-      user: newUser,
-    });
+// @desc      Login to app
+// @route     /user
+// @access    public
+export const loginUser: RequestHandler<{}, {}, LoginUserRequest, {}> = async (req, res, next) => {
+  const { email, password } = req.body;
+
+  try {
+    // ! check for required fields
+    if (!email || !password) {
+      throw createHttpError(400, "Missing one or more required fields");
+    }
+
+    // ! find the user from email and check password
+    const userExist: any = await User.findOne({ email });
+
+    if (!userExist || !(await userExist.matchPassword(password))) {
+      throw createHttpError(400, "Invalid Email or Password");
+    }
+
+    sendToken(res, userExist, 200, "User logged In successfully");
   } catch (error) {
     next(error);
   }

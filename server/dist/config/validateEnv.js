@@ -7,4 +7,5 @@ exports.default = (0, envalid_1.cleanEnv)(process.env, {
     OTP_EXPIRATION_GAP: (0, envalid_1.num)(),
     OUTLOOK_EMAIL: (0, envalid_1.str)(),
     OUTLOOK_PASS: (0, envalid_1.str)(),
+    JWT_SECRET_KEY: (0, envalid_1.str)(),
 });

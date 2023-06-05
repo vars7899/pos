@@ -1,8 +1,11 @@
-import { InferSchemaType, Schema, model } from "mongoose";
+import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import env from "../config/validateEnv";
+
 const SALT_ROUNDS: number = 10;
 
-const UserSchema = new Schema(
+const UserSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
@@ -47,12 +50,12 @@ const UserSchema = new Schema(
       default: false,
     },
     address: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "address",
     },
     restaurant: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "restaurant",
       },
     ],
@@ -62,7 +65,6 @@ const UserSchema = new Schema(
   }
 );
 
-type IUser = InferSchemaType<typeof UserSchema>;
 // Pre functions
 UserSchema.pre("save", async function hashPassword(next) {
   let password: any = this.password;
@@ -73,5 +75,20 @@ UserSchema.pre("save", async function hashPassword(next) {
   next();
 });
 
-const User = model<IUser>("user", UserSchema);
+// Generate Token
+UserSchema.methods.generateToken = function () {
+  // Creates a token that expires in 1 day
+  return jwt.sign({ _id: this._id }, env.JWT_SECRET_KEY, {
+    expiresIn: "1d",
+  });
+};
+
+// Match password
+UserSchema.methods.matchPassword = async function (givenPassword: string) {
+  return await bcrypt.compare(givenPassword, this.password);
+};
+
+export type IUser = mongoose.InferSchemaType<typeof UserSchema>;
+
+const User = mongoose.model<IUser>("user", UserSchema);
 export default User;

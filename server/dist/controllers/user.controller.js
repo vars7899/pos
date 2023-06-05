@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.registerNewUser = void 0;
+exports.loginUser = exports.registerNewUser = void 0;
 const http_errors_1 = __importDefault(require("http-errors"));
 const Address_model_1 = __importDefault(require("../models/Address.model"));
 const User_model_1 = __importDefault(require("../models/User.model"));
@@ -20,6 +20,10 @@ const validateEmail_1 = __importDefault(require("../functions/validateEmail"));
 const generateOtp_1 = __importDefault(require("../config/generateOtp"));
 const validateEnv_1 = __importDefault(require("../config/validateEnv"));
 const sendEmail_1 = require("../config/sendEmail");
+const sendToken_1 = __importDefault(require("../config/sendToken"));
+// @desc      Register new user
+// @route     /user/register
+// @access    public
 const registerNewUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { firstName, lastName, email, password, dob, phoneNumber, address } = req.body;
     try {
@@ -60,13 +64,33 @@ const registerNewUser = (req, res, next) => __awaiter(void 0, void 0, void 0, fu
         (0, sendEmail_1.sendEmail)(email, "Verify your Register Ox account", `<div>
         <p>${otpValue}</p>
     </div>`);
-        res.status(200).json({
-            success: true,
-            user: newUser,
-        });
+        // ! send response
+        (0, sendToken_1.default)(res, newUser, 201, "User registered successfully, An OTP was sent to the provided email, please verify to continue");
     }
     catch (error) {
         next(error);
     }
 });
 exports.registerNewUser = registerNewUser;
+// @desc      Login to app
+// @route     /user
+// @access    public
+const loginUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email, password } = req.body;
+    try {
+        // ! check for required fields
+        if (!email || !password) {
+            throw (0, http_errors_1.default)(400, "Missing one or more required fields");
+        }
+        // ! find the user from email and check password
+        const userExist = yield User_model_1.default.findOne({ email });
+        if (!userExist || !(yield userExist.matchPassword(password))) {
+            throw (0, http_errors_1.default)(400, "Invalid Email or Password");
+        }
+        (0, sendToken_1.default)(res, userExist, 200, "User logged In successfully");
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.loginUser = loginUser;

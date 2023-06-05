@@ -36,12 +36,14 @@ const print_1 = require("./functions/print");
 const db_1 = require("./config/db");
 const handleError_1 = __importDefault(require("./middleware/handleError"));
 const user_route_1 = __importDefault(require("./routes/user.route"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const app = (0, express_1.default)();
 const PORT = validateEnv_1.default.PORT || 8080;
 const VERSION_STRING = "/api/v1";
 // middleware
 app.use(express_1.default.json());
 app.use((0, morgan_1.default)("short"));
+app.use((0, cookie_parser_1.default)());
 // Routes
 app.get(`/`, (_, res) => {
     res.status(200).json({

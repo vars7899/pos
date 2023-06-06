@@ -35,8 +35,8 @@ const CONSTANTS = __importStar(require("./constants"));
 const print_1 = require("./functions/print");
 const db_1 = require("./config/db");
 const handleError_1 = __importDefault(require("./middleware/handleError"));
-const user_route_1 = __importDefault(require("./routes/user.route"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const Routes = __importStar(require("./routes"));
 const app = (0, express_1.default)();
 const PORT = validateEnv_1.default.PORT || 8080;
 const VERSION_STRING = "/api/v1";
@@ -51,7 +51,9 @@ app.get(`/`, (_, res) => {
         message: "Register Ox Server is UP",
     });
 });
-app.use(`${VERSION_STRING}/user`, user_route_1.default);
+app.use(`${VERSION_STRING}/user`, Routes.UserRoutes);
+app.use(`${VERSION_STRING}/store`, Routes.StoreRoutes);
+app.use(`${VERSION_STRING}/table`, Routes.TableRoutes);
 // Error Handling
 app.use((_, __, next) => next((0, http_errors_1.default)(404, "Requested endpoint not found")));
 app.use(handleError_1.default);

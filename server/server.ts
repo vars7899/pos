@@ -9,8 +9,8 @@ import { Server } from "http";
 import { connectDB } from "./config/db";
 import { NextFunction } from "connect";
 import handleError from "./middleware/handleError";
-import userRoutes from "./routes/user.route";
 import cookieParser from "cookie-parser";
+import * as Routes from "./routes";
 
 const app: Express = express();
 const PORT: number | string = env.PORT || 8080;
@@ -28,7 +28,10 @@ app.get(`/`, (_: Request, res: Response) => {
     message: "Register Ox Server is UP",
   });
 });
-app.use(`${VERSION_STRING}/user`, userRoutes);
+app.use(`${VERSION_STRING}/user`, Routes.UserRoutes);
+app.use(`${VERSION_STRING}/store`, Routes.StoreRoutes);
+app.use(`${VERSION_STRING}/table`, Routes.TableRoutes);
+
 // Error Handling
 app.use((_: Request, __: Response, next: NextFunction) => next(createHttpError(404, "Requested endpoint not found")));
 app.use(handleError);

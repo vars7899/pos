@@ -33,7 +33,7 @@ const AddressSchema = new Schema(
   }
 );
 
-type IAddress = InferSchemaType<typeof AddressSchema>;
+export type IAddress = InferSchemaType<typeof AddressSchema>;
 
 const Address = model<IAddress>("address", AddressSchema);
 export default Address;

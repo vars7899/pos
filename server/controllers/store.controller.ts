@@ -103,7 +103,7 @@ export const removeStore: RequestHandler<RemoveStoreParams, {}, {}, {}> = async 
         "We are unable to locate the desired store due to an invalid store ID. Please try again with a valid store ID"
       );
     }
-    const storeExist = await Store.findById(storeId);
+    const storeExist: any = await Store.findById(storeId);
     if (!storeExist) {
       throw createHttpError(
         400,

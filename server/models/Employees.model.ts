@@ -16,6 +16,14 @@ const EmployeeSchema = new Schema(
       maxLength: [50, "Last name has maximum character limit of 50"],
       minLength: [3, "Last name has minimum character limit of 3"],
     },
+    gender: {
+      type: String,
+      required: [true, "Employee gender is a required field"],
+    },
+    joiningDate: {
+      type: String,
+      required: [true, "Employee joining date is a required date"],
+    },
     contactInformation: {
       email: {
         type: String,

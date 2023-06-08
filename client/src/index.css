@@ -10,8 +10,11 @@
 }
 
 .inputLabel {
-  @apply text-lg text-MEDIUM_GRAY font-medium mb-2;
+  @apply text-zinc-950 mb-[4px];
 }
 .outlineInput {
-  @apply border-[1px] border-MEDIUM_GRAY bg-transparent rounded-md text-xl text-WHITE px-4 py-3;
+  @apply border-[1px] border-zinc-200 bg-transparent rounded-md text-xl text-zinc-950 px-4 py-3;
+}
+.formControl{
+  @apply flex flex-col
 }

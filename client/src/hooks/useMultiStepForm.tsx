@@ -26,6 +26,7 @@ const useMultiStepForm = (steps: React.ReactNode[]) => {
     steps,
     step: steps[currentStep],
     currentStep,
+    totalSteps: steps.length,
     $nextStep,
     $prevStep,
     $jumpTo,

@@ -23,6 +23,10 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, "Product category is a required field"],
     },
+    calories: {
+      type: Number,
+      default: 0,
+    },
   },
   { timestamps: true }
 );

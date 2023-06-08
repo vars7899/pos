@@ -1,73 +1,64 @@
 import { ChangeEvent } from "react";
-import { NewUserData } from "../../global/types";
+import * as Types from "../../global/types";
+import * as Data from "../../global/registerStepData";
 import { IconBuildingStore, IconHome, IconBuildingFactory2 } from "@tabler/icons-react";
+import FormHeaderSection from "./FormHeaderSection";
+import RegisterInput from "./RegisterInput";
 
-type BusinessInformationFormProps = {
-  formData: NewUserData;
+interface BusinessInformationFormProps {
+  formData: Types.RegisterUserData;
   $updateFormData: (e: ChangeEvent<HTMLInputElement>) => void;
-};
+}
 
-const companyLifeOption = [
+const companySizeOptions = [
   {
-    life: "0",
-    tag: "startup",
+    name: "Small Business",
+    icon: <IconHome strokeWidth={1.5} size={32} />,
+    value: "small business",
   },
   {
-    life: "1",
-    tag: "year",
+    name: "Mid Market",
+    icon: <IconBuildingStore strokeWidth={1.5} size={32} />,
+    value: "mid market",
   },
   {
-    life: "2",
-    tag: "year",
-  },
-  {
-    life: "3",
-    tag: "year",
-  },
-  {
-    life: "4+",
-    tag: "year",
+    name: "Large enterprise",
+    icon: <IconBuildingFactory2 strokeWidth={1.5} size={32} />,
+    value: "large enterprise",
   },
 ];
 
-const BusinessInformationForm = ({ formData, $updateFormData }: BusinessInformationFormProps) => {
+const BusinessInformationForm = (props: BusinessInformationFormProps) => {
   return (
     <div className="w-[100%]">
-      <div className="mt-24 flex items-center justify-start">
-        <div className="text-8xl font-bold text-YELLOW font-bakbakOne">02</div>
-        <div className="flex flex-col ml-4">
-          <p className="text-5xl text-WHITE">ABOUT YOUR BUSINESS</p>
-          <p className="text-2xl text-MEDIUM_GRAY">Help us determine what you need.</p>
-        </div>
-      </div>
-      <div className="mt-10">
+      <FormHeaderSection data={Data.registerData[2]} />
+      <div className="pt-12">
+        <RegisterInput
+          inputType="text"
+          label="Brand Name"
+          name="companyName"
+          value={props.formData.companyName}
+          onChange={props.$updateFormData}
+          placeHolder="Enter your brand name"
+        />
+        <RegisterInput
+          inputType="number"
+          label="How long have you been in business for?"
+          name="companyLifeSpan"
+          value={props.formData.companyLifeSpan}
+          onChange={props.$updateFormData}
+          placeHolder="Enter number of years"
+        />
         <div>
           <label className="inputLabel">Company Size</label>
-          <div className="grid grid-cols-3 gap-4 mt-3">
-            <div className="rounded-md border-[1px] border-MEDIUM_GRAY flex flex-col items-center justify-center py-8">
-              <IconHome size={36} className="text-MEDIUM_GRAY" strokeWidth={1.5} />
-              <p className="text-sm font-medium uppercase pt-4 text-WHITE/20">Small Business</p>
-            </div>
-            <div className="rounded-md border-[1px] border-MEDIUM_GRAY flex flex-col items-center justify-center py-8">
-              <IconBuildingStore size={36} className="text-MEDIUM_GRAY" strokeWidth={1.5} />
-              <p className="text-sm font-medium uppercase pt-4 text-WHITE/20">Mid Market</p>
-            </div>
-            <div className="rounded-md border-[1px] border-MEDIUM_GRAY flex flex-col items-center justify-center py-8s">
-              <IconBuildingFactory2 size={36} className="text-MEDIUM_GRAY" strokeWidth={1.5} />
-              <p className="text-sm font-medium uppercase pt-4 text-WHITE/20">Large Enterprise</p>
-            </div>
-          </div>
-        </div>
-        <div className="mt-5">
-          <label className="inputLabel">How long have you been in business for?</label>
-          <div className="grid grid-cols-5 gap-4 mt-3">
-            {companyLifeOption.map((opt, index) => (
+          <div className="grid grid-cols-3 gap-4 mt-[6px]">
+            {companySizeOptions.map((company, index) => (
               <div
-                key={`life-opt-${index}`}
-                className="rounded-md border-[1px] border-MEDIUM_GRAY flex flex-col items-center justify-center py-4"
+                key={index}
+                className="rounded-md border-[1px] border-zinc-200 flex flex-col items-center justify-center py-8"
               >
-                <p className="text-4xl text-MEDIUM_GRAY font-semibold">{opt.life}</p>
-                <p className="text-sm font-medium uppercase pt-4 text-WHITE/20 capitalize">{opt.tag}</p>
+                <div className="text-zinc-400">{company.icon}</div>
+                <p className="text-sm font-medium uppercase pt-4 text-zinc-400">{company.name}</p>
               </div>
             ))}
           </div>

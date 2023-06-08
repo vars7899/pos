@@ -13,8 +13,8 @@ const IconAttributes = {
 
 const OrderTableFeatures = ({ selectedTable }: OrderTableFeaturesProps) => {
   return (
-    <div className="flex items-center justify-between border-b-[1px] px-4">
-      <div className="h-[70px] flex flex-col justify-center">
+    <div className="flex items-center justify-between border-b-[1px] px-4 h-[70px] ">
+      <div className="flex flex-col justify-center">
         <p className="text-xl font-semibold">Table {selectedTable.tableNumber}</p>
         <p className="capitalize text-xs text-slate-600 font-medium">{hideStringOverflow("johnhansen flamingo")}</p>
       </div>

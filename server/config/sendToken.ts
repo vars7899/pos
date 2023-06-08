@@ -8,11 +8,15 @@ async function sendToken(res: Response, user: any, statusCode: number, message: 
   };
   // ! Delete user fields
   let { password, ...userData } = user._doc;
-  res.status(statusCode).cookie("token", token, cookieOptions).json({
-    success: true,
-    message,
-    user: userData,
-  });
+  res
+    .status(statusCode)
+    .cookie("token", token, cookieOptions)
+    .cookie("storeId", "3420uy02349jg304j", cookieOptions)
+    .json({
+      success: true,
+      message,
+      user: userData,
+    });
 }
 
 export default sendToken;

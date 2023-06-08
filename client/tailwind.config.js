@@ -13,6 +13,7 @@ export default {
         ORANGE_DARK: "#061818",
         CUSTOM_BLACK: "#121213",
         CUSTOM_DARK_GRAY: "#1f1f20",
+        DARK: "#070707",
         MEDIUM_GRAY: "#575759",
         CUSTOM_RED: "#EB546f",
         YELLOW: "#ffc700",

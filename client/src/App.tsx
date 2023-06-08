@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home, ProductMenu, TableMap, UserRegistration } from "./screens";
+import * as Screen from "./screens";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -13,12 +13,15 @@ const App: React.FC = () => {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Screen.Home />} />
           {/* POS SCREENS */}
-          <Route path="/pos/table" element={<TableMap />} />
-          <Route path="/pos/menu" element={<ProductMenu />} />
+          <Route path="/pos" element={<Screen.PosLogin />} />
+          <Route path="/pos/table" element={<Screen.TableMap />} />
+          <Route path="/pos/menu" element={<Screen.ProductMenu />} />
           {/* AUTHENTICATION SCREENS */}
-          <Route path="/register" element={<UserRegistration />} />
+          <Route path="/register" element={<Screen.UserRegistration />} />
+          {/* DASHBOARD SCREENS */}
+          <Route path="/dashboard/employee" element={<Screen.EmployeeList />} />
         </Routes>
       </Router>
     </>

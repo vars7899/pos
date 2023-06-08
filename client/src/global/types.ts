@@ -39,15 +39,18 @@ export interface TableDetails {
 export type CurrencyType = string;
 
 // Registration Interface
-export interface NewUserData {
+export interface RegisterUserData {
   firstName: string;
   lastName: string;
-  countryCode: string;
   phoneNumber: string;
   email: string;
+  confirmEmail: string;
   password: string;
+  confirmPassword: string;
   dob: string;
   companySize: string;
+  companyName: string;
+  companyLifeSpan: string;
   // Address fields
   street: string;
   addressLine: string;
@@ -55,4 +58,9 @@ export interface NewUserData {
   state: string;
   country: string;
   postalCode: string;
+}
+
+export interface LoginUserData {
+  email: string;
+  password: string;
 }

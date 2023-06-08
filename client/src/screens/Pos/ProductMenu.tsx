@@ -196,24 +196,28 @@ const selectedTable: TableDetails = {
 
 const ProductMenu = () => {
   return (
-    <PosLayout isLoading={false}>
-      <div className="grid grid-cols-[5fr,_380px]">
-        <div>
-          <PosNavbar />
+    <PosLayout
+      isLoading={false}
+      leftChildren={
+        <>
           <SelectCategoryListContainer />
           <div className="border-t-[1px]">
             <ProductCluster productList={productList} />
           </div>
-        </div>
-        <div className="w-[100%] max-h-[100vh] border-l-[1px] flex flex-col justify-between">
-          <div>
-            <OrderTableFeatures selectedTable={selectedTable} />
-            <OrderOverview orderDetails={selectedTable.orderDetails} />
+        </>
+      }
+      rightChildren={
+        <>
+          <div className="w-[100%] max-h-[100vh] border-l-[1px] flex flex-col justify-between">
+            <div>
+              <OrderTableFeatures selectedTable={selectedTable} />
+              <OrderOverview orderDetails={selectedTable.orderDetails} />
+            </div>
+            <OrderTotalSection />
           </div>
-          <OrderTotalSection />
-        </div>
-      </div>
-    </PosLayout>
+        </>
+      }
+    />
   );
 };
 

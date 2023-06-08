@@ -15,7 +15,10 @@ export interface IRegisterUser {
   };
 }
 
+export interface userDetails {}
+
 export interface LoginUserRequest {
   email: string;
   password: string;
 }
+

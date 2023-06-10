@@ -8,6 +8,7 @@ interface RegisterInputProps {
   onChange(e: ChangeEvent<HTMLInputElement>): void;
   placeHolder: string;
   className?: string;
+  min?: number;
 }
 
 const RegisterInput = (props: RegisterInputProps) => {
@@ -21,6 +22,7 @@ const RegisterInput = (props: RegisterInputProps) => {
         value={props.value}
         onChange={props.onChange}
         placeholder={props.placeHolder}
+        min={props.min}
       />
     </div>
   );

@@ -64,3 +64,9 @@ export interface LoginUserData {
   email: string;
   password: string;
 }
+
+export interface CompanySizeOptions {
+  name: string;
+  icon: any;
+  value: string;
+}

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
 import * as Types from "../../global/types";
 import * as Data from "../../global/registerStepData";
 import { IconBuildingStore, IconHome, IconBuildingFactory2 } from "@tabler/icons-react";
@@ -8,27 +8,32 @@ import RegisterInput from "./RegisterInput";
 interface BusinessInformationFormProps {
   formData: Types.RegisterUserData;
   $updateFormData: (e: ChangeEvent<HTMLInputElement>) => void;
+  setFormData: Dispatch<SetStateAction<Types.RegisterUserData>>;
 }
 
-const companySizeOptions = [
+const companySizeOptions: Types.CompanySizeOptions[] = [
   {
     name: "Small Business",
-    icon: <IconHome strokeWidth={1.5} size={32} />,
-    value: "small business",
+    icon: <IconHome strokeWidth={1.25} size={32} />,
+    value: "small",
   },
   {
     name: "Mid Market",
-    icon: <IconBuildingStore strokeWidth={1.5} size={32} />,
-    value: "mid market",
+    icon: <IconBuildingStore strokeWidth={1.25} size={32} />,
+    value: "medium",
   },
   {
     name: "Large enterprise",
-    icon: <IconBuildingFactory2 strokeWidth={1.5} size={32} />,
-    value: "large enterprise",
+    icon: <IconBuildingFactory2 strokeWidth={1.25} size={32} />,
+    value: "large",
   },
 ];
 
 const BusinessInformationForm = (props: BusinessInformationFormProps) => {
+  function $selectCompanySize(value: string) {
+    props.setFormData((prev) => ({ ...prev, ["companySize"]: value }));
+  }
+
   return (
     <div className="w-[100%]">
       <FormHeaderSection data={Data.registerData[2]} />
@@ -48,6 +53,7 @@ const BusinessInformationForm = (props: BusinessInformationFormProps) => {
           value={props.formData.companyLifeSpan}
           onChange={props.$updateFormData}
           placeHolder="Enter number of years"
+          min={0}
         />
         <div>
           <label className="inputLabel">Company Size</label>
@@ -55,10 +61,13 @@ const BusinessInformationForm = (props: BusinessInformationFormProps) => {
             {companySizeOptions.map((company, index) => (
               <div
                 key={index}
-                className="rounded-md border-[1px] border-zinc-200 flex flex-col items-center justify-center py-8"
+                className={`cursor-pointer rounded-md border-[1px] border-zinc-200 flex flex-col items-center justify-center py-6 ${
+                  props.formData.companySize === company.value ? "bg-zinc-950 text-white" : "text-zinc-400"
+                }`}
+                onClick={() => $selectCompanySize(company.value)}
               >
-                <div className="text-zinc-400">{company.icon}</div>
-                <p className="text-sm font-medium uppercase pt-4 text-zinc-400">{company.name}</p>
+                <div>{company.icon}</div>
+                <p className="text-base tracking-wide font-medium capitalize pt-4 max-w-xs">{company.name}</p>
               </div>
             ))}
           </div>

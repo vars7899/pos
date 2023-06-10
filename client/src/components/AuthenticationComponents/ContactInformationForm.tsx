@@ -17,8 +17,8 @@ const ContactInformationForm = (props: ContactInformationFormProps) => {
         <RegisterInput
           inputType="text"
           label="street address"
-          name="firstName"
-          value={props.formData.firstName}
+          name="street"
+          value={props.formData.street}
           onChange={props.$updateFormData}
           placeHolder="Enter street address"
         />
@@ -45,6 +45,14 @@ const ContactInformationForm = (props: ContactInformationFormProps) => {
           value={props.formData.state}
           onChange={props.$updateFormData}
           placeHolder="Enter state"
+        />
+        <RegisterInput
+          inputType="text"
+          label="Country"
+          name="country"
+          value={props.formData.country}
+          onChange={props.$updateFormData}
+          placeHolder="Enter country"
         />
         <RegisterInput
           inputType="text"

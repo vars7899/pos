@@ -2,7 +2,7 @@ import { IconArrowRight, IconArrowLeft } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
 interface RegisterStepNavigationProps {
-  $nextStep(): void;
+  $nextStep(e: any): void;
   $prevStep(): void;
   currentStep: number;
 }
@@ -19,8 +19,9 @@ const RegisterStepNavigation = (props: RegisterStepNavigationProps) => {
         <p className="ml-2 capitalize">{props.currentStep <= 0 ? "Go Home" : "previous step"}</p>
       </button>
       <button
+        type="submit"
         className="font-medium rounded-md py-3 px-5 flex items-center justify-center bg-zinc-950 text-white"
-        onClick={props.$nextStep}
+        onClick={(e) => props.$nextStep(e)}
       >
         <p className="mr-2 capitalize">Next Step</p>
         <IconArrowRight strokeWidth={1.5} size={20} />

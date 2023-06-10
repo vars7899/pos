@@ -10,7 +10,7 @@ export const RegisterUserData: Types.RegisterUserData = {
   password: "",
   confirmPassword: "",
   dob: "",
-  companySize: "",
+  companySize: "small",
   companyName: "",
   companyLifeSpan: "",
   // Address fields

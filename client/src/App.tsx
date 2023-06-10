@@ -1,6 +1,8 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import * as Screen from "./screens";
+import React from "react";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -24,6 +26,15 @@ const App: React.FC = () => {
           <Route path="/dashboard/employee" element={<Screen.EmployeeList />} />
         </Routes>
       </Router>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        closeOnClick
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
     </>
   );
 };

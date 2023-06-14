@@ -70,3 +70,9 @@ export interface CompanySizeOptions {
   icon: any;
   value: string;
 }
+
+
+export interface UserLoginData {
+  email: string;
+  password: string;
+}

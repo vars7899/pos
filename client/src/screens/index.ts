@@ -7,6 +7,6 @@ export { default as ProductMenu } from "./Pos/ProductMenu";
 
 // Authentication Screens
 export { default as UserRegistration } from "./Authentication/UserRegistration";
-
+export { default as UserLogin } from "./Authentication/UserLogin";
 // Dashboard Screens
 export { default as EmployeeList } from "./Dashboard/EmployeeList";

@@ -1,9 +1,9 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
-import * as Types from "../../global/types";
-import * as Data from "../../global/registerStepData";
 import { IconBuildingStore, IconHome, IconBuildingFactory2 } from "@tabler/icons-react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
+import * as Data from "../../global/registerStepData";
 import FormHeaderSection from "./FormHeaderSection";
 import RegisterInput from "./RegisterInput";
+import * as Types from "../../global/types";
 
 interface BusinessInformationFormProps {
   formData: Types.RegisterUserData;

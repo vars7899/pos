@@ -11,7 +11,7 @@ const initialState = {
   isAuthenticated: false,
 };
 
-export const REGISTER_USER = createAsyncThunk("AUTH/REGISTER_USER", async (data: Types.RegisterUserData, thunkAPI) => {
+export const REGISTER_USER = createAsyncThunk("AUTH/REGISTER_USER", async (data: any, thunkAPI) => {
   try {
     return await authFeature.registerNewUser(data);
   } catch (error: any) {
@@ -21,7 +21,7 @@ export const REGISTER_USER = createAsyncThunk("AUTH/REGISTER_USER", async (data:
   }
 });
 
-const userSlice = createSlice({
+const authSlice = createSlice({
   name: "Auth",
   initialState,
   reducers: {},
@@ -45,6 +45,6 @@ const userSlice = createSlice({
   },
 });
 
-export const {} = userSlice.actions;
+export const {} = authSlice.actions;
 
-export default userSlice.reducer;
+export default authSlice.reducer;

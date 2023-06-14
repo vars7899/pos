@@ -8,9 +8,11 @@ import * as Types from "../../global/types";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import * as Hooks from "../../hooks";
+import { REGISTER_USER } from "../../redux/feature/authSlice";
+import { AppDispatch } from "../../redux/store";
 
 const UserRegistration: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = useState<Types.RegisterUserData>(DefaultData.RegisterUserData);
 
   // Custom Multi Step Hook
@@ -75,6 +77,30 @@ const UserRegistration: React.FC = () => {
         $jumpTo(1);
         return toast.dark("Missing/empty field(s)\nPlease make sure all the address fields are correct");
       }
+      dispatch(
+        REGISTER_USER({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          confirmEmail: formData.confirmEmail,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+          phoneNumber: formData.phoneNumber,
+          address: {
+            street: formData.street,
+            addressLine: formData.addressLine,
+            city: formData.city,
+            state: formData.state,
+            country: formData.country,
+            postalCode: formData.postalCode,
+          },
+          companyDetails: {
+            companyName: formData.companyName,
+            companySize: formData.companySize,
+            companyLifeSpan: formData.companyLifeSpan,
+          },
+        })
+      );
     } else {
       $nextStep();
     }

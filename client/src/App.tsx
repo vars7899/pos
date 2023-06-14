@@ -21,7 +21,8 @@ const App: React.FC = () => {
           <Route path="/pos/table" element={<Screen.TableMap />} />
           <Route path="/pos/menu" element={<Screen.ProductMenu />} />
           {/* AUTHENTICATION SCREENS */}
-          <Route path="/register" element={<Screen.UserRegistration />} />
+          <Route path="/dashboard/register" element={<Screen.UserRegistration />} />
+          <Route path="/dashboard/login" element={<Screen.UserLogin />} />
           {/* DASHBOARD SCREENS */}
           <Route path="/dashboard/employee" element={<Screen.EmployeeList />} />
         </Routes>

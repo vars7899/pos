@@ -22,7 +22,11 @@ export { default as UserVerificationForm } from "./AuthenticationComponents/User
 export { default as RegisterStepInformation } from "./AuthenticationComponents/RegisterStepInformation";
 export { default as ContactInformationForm } from "./AuthenticationComponents/ContactInformationForm";
 export { default as SetupPasswordForm } from "./AuthenticationComponents/SetupPasswordForm";
+export { default as UserLoginForm } from "./AuthenticationComponents/UserLoginForm";
 
 // Dashboard Components
 export { default as DashboardSidebar } from "./DashboardComponents/DashboardSidebar";
 export { default as DashboardNavbar } from "./DashboardComponents/DashboardNavbar";
+
+// Employee Components
+export * as Employee from "./EmployeeComponents";

@@ -21,3 +21,8 @@ export const RegisterUserData: Types.RegisterUserData = {
   country: "",
   postalCode: "",
 };
+
+export const UserLoginData: Types.UserLoginData = {
+  email: "",
+  password: "",
+};

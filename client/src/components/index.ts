@@ -15,14 +15,13 @@ export { default as OrderTableFeatures } from "./OrderComponents/OrderTableFeatu
 export { default as OrderTotalSection } from "./OrderComponents/OrderTotalSection";
 
 // Authentication Components
-export { default as GeneralInformationForm } from "./AuthenticationComponents/GeneralInformationForm";
-export { default as BusinessInformationForm } from "./AuthenticationComponents/BusinessInformationForm";
-export { default as MoveToNextStepButton } from "./AuthenticationComponents/RegisterStepNavigation";
-export { default as UserVerificationForm } from "./AuthenticationComponents/UserVerificationForm";
-export { default as RegisterStepInformation } from "./AuthenticationComponents/RegisterStepInformation";
-export { default as ContactInformationForm } from "./AuthenticationComponents/ContactInformationForm";
-export { default as SetupPasswordForm } from "./AuthenticationComponents/SetupPasswordForm";
-export { default as UserLoginForm } from "./AuthenticationComponents/UserLoginForm";
+export { default as GeneralInformationForm } from "./Auth/GeneralInformationForm";
+export { default as BusinessInformationForm } from "./Auth/BusinessInformationForm";
+export { default as MoveToNextStepButton } from "./Auth/RegisterStepNavigation";
+export { default as UserVerificationForm } from "./Auth/UserVerificationForm";
+export { default as ContactInformationForm } from "./Auth/ContactInformationForm";
+export { default as SetupPasswordForm } from "./Auth/SetupPasswordForm";
+export { default as UserLoginForm } from "./Auth/UserLoginForm";
 
 // Dashboard Components
 export { default as DashboardSidebar } from "./DashboardComponents/DashboardSidebar";
@@ -30,3 +29,7 @@ export { default as DashboardNavbar } from "./DashboardComponents/DashboardNavba
 
 // Employee Components
 export * as Employee from "./EmployeeComponents";
+
+export * as Auth from "./Auth";
+export * as Brand from "./BrandComponents";
+export * as Default from "./Default";

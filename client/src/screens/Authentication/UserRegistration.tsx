@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import * as Hooks from "../../hooks";
 import { REGISTER_USER } from "../../redux/feature/authSlice";
 import { AppDispatch } from "../../redux/store";
+import * as Layout from "../../layouts";
 
 const UserRegistration: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -107,8 +108,28 @@ const UserRegistration: React.FC = () => {
   }
 
   return (
-    <div className="h-[100vh] w-[100vw] max-h-[100vh] max-w-[100vw] bg-white relative grid grid-cols-[1fr,_700px]">
-      <Component.RegisterStepInformation
+    <Layout.AuthLayout
+      type="register"
+      registerStepInformation={{
+        currentStep: currentStep,
+        totalSteps: totalSteps,
+        stepInformationArray: Data.registerData,
+      }}
+    >
+      <div className="w-[100%] flex flex-col justify-between items-center">
+        <form onSubmit={(e) => $handleSubmit(e)} className="px-16 pt-12">
+          {step}
+        </form>
+        <Component.MoveToNextStepButton $nextStep={$handleSubmit} $prevStep={$prevStep} currentStep={currentStep} />
+      </div>
+    </Layout.AuthLayout>
+  );
+};
+
+export default UserRegistration;
+
+{
+  /* <Component.RegisterStepInformation
         currentStep={currentStep}
         totalSteps={totalSteps}
         stepInformationArray={Data.registerData}
@@ -118,9 +139,5 @@ const UserRegistration: React.FC = () => {
           {step}
         </form>
         <Component.MoveToNextStepButton $nextStep={$handleSubmit} $prevStep={$prevStep} currentStep={currentStep} />
-      </div>
-    </div>
-  );
-};
-
-export default UserRegistration;
+      </div> */
+}

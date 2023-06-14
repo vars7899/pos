@@ -1,83 +1,75 @@
-import { useState } from "react";
+import { useState, useEffect, FormEvent, ChangeEvent } from "react";
 import * as Types from "../../global/types";
 import * as DefaultData from "../../global/defaultData";
-import { IconBallVolleyball } from "@tabler/icons-react";
 import * as Components from "../../components";
+import * as Layout from "../../layouts";
 import { motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import * as Functions from "../../functions";
+import * as AuthActions from "../../redux/feature/authSlice";
+import { toast } from "react-toastify";
+import { AppDispatch } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 const UserLogin = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const { isSuccess, isError, message } = useSelector((state: any) => state.auth);
   const [formData, setFormData] = useState<Types.UserLoginData>(DefaultData.UserLoginData);
 
-  function $updateFormData(e) {
+  function $updateFormData(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
+
+  function $handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const { email, password } = formData;
+
+    if (!email || !password) {
+      toast.dark("Missing one or more required field(s), Please try again");
+      return;
+    }
+    if (!Functions.validateEmail(email)) {
+      toast.dark("Invalid email syntax, it seems that email is not valid, Please try again");
+      return;
+    }
+    dispatch(AuthActions.LOGIN_USER(formData));
+  }
+
+  // side effect
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/dashboard/home");
+      dispatch(AuthActions.RESET_AUTH_FLAGS());
+    }
+    if (isError) {
+      toast(`OOPS!!!, Something went wrong, ${message}`);
+      dispatch(AuthActions.CLEAR_AUTH_ERROR());
+    }
+  }, [navigate, dispatch, isSuccess, isError]);
+
   return (
-    <div className="h-[100vh] w-[100vw] max-h-[100vh] max-w-[100vw] grid grid-cols-[1fr,_700px]">
-      <div className="bg-black relative overflow-hidden">
-        <motion.div
-          initial={{
-            translateX: "-50%",
-            translateY: "-50%",
-          }}
-          animate={{
-            scale: [1, 3, 2],
-            translateX: [-100, 100, 0],
-            translateY: [-50, 100, 0],
-            transition: {
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              duration: 8,
-            },
-          }}
-          className="absolute top-0 left-0 bg-sky-600/60 h-60 w-60 rounded-full"
-        ></motion.div>
-        <motion.div
-          initial={{
-            translateX: "50%",
-            translateY: "50%",
-          }}
-          animate={{
-            scale: [3, 1.5, 4],
-            translateX: [-100, -200, -100, 0],
-            translateY: [100, 200, 200, 0],
-            transition: {
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-              duration: 10,
-            },
-          }}
-          className="absolute bottom-0 right-0 bg-rose-600/80 h-60 w-60 rounded-full"
-        ></motion.div>
-        <div className="absolute h-[100%] w-[100%] bg-white/5 backdrop-blur-3xl"></div>
-        <motion.div
-          className="absolute left-10 bottom-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: [0, 0.5, 1], transition: { duration: 3 } }}
-        >
-          <div className="text-[8rem] font-extrabold uppercase text-white font-beVietnam leading-none">
-            <p>next zen</p>
-            <p>point of sale</p>
-          </div>
-          <p className="text-zinc-400 text-xl font-thin font-beVietnam pl-2">
-            POS that elevates the customer experience
-          </p>
-        </motion.div>
-      </div>
-      <div className="pt-20 px-14">
-        <div className="flex items-center justify-center font-normal text-zinc-950">
-          <IconBallVolleyball strokeWidth={1} size={60} />
-          <p className="text-4xl ml-2">Register Ox</p>
-        </div>
+    <Layout.AuthLayout type="login">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{
+          opacity: 1,
+          transition: {
+            ease: "easeInOut",
+            duration: 1,
+          },
+        }}
+        className="pt-20 px-14 bg-white backdrop-blur-3xl"
+      >
+        <Components.Brand.BrandLogo IconSize={60} textSize="text-4xl" />
         <div className="mt-20 mb-12">
           <p className="mt-16 text-5xl font-semibold mb-2">Welcome Back</p>
           <p className="text-zinc-600">In order to access your dashboard, you will need to enter your credential</p>
         </div>
-        <Components.UserLoginForm formData={formData} $updateFormData={$updateFormData} />
-      </div>
-    </div>
+        <Components.UserLoginForm formData={formData} $updateFormData={$updateFormData} $handleSubmit={$handleSubmit} />
+      </motion.div>
+    </Layout.AuthLayout>
   );
 };
 

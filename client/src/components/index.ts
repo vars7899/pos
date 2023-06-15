@@ -15,11 +15,7 @@ export { default as OrderTableFeatures } from "./OrderComponents/OrderTableFeatu
 export { default as OrderTotalSection } from "./OrderComponents/OrderTotalSection";
 
 
-// Dashboard Components
-export { default as DashboardSidebar } from "./DashboardComponents/DashboardSidebar";
-export { default as DashboardNavbar } from "./DashboardComponents/DashboardNavbar";
-
-// Employee Components
+export * as Dashboard from "./Dashboard";
 export * as Employee from "./Employee";
 export * as Auth from "./Auth";
 export * as Brand from "./BrandComponents";

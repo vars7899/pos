@@ -1,35 +1,40 @@
 import { NavigationOptionList } from "./Navigation";
 import { IconReceipt, IconPaperBag, IconDashboard, IconUser, IconBooks, IconSettings } from "@tabler/icons-react";
 
+const IconSetting = {
+  size: 32,
+  strokeWidth: 1,
+};
+
 export const DashboardNavigationList: NavigationOptionList = [
   {
-    name: "Business Overview",
+    name: "Overview",
     path: "/dashboard/overview",
-    icon: <IconDashboard />,
+    icon: <IconDashboard {...IconSetting} />,
   },
   {
     name: "Employee",
     path: "/dashboard/employee",
-    icon: <IconUser />,
+    icon: <IconUser {...IconSetting} />,
   },
   {
     name: "Menu & Product",
     path: "/dashboard/product",
-    icon: <IconBooks />,
+    icon: <IconBooks {...IconSetting} />,
   },
   {
     name: "Store Setting",
     path: "/dashboard/setting",
-    icon: <IconSettings />,
+    icon: <IconSettings {...IconSetting} />,
   },
   {
     name: "Orders",
     path: "/dashboard/order",
-    icon: <IconPaperBag />,
+    icon: <IconPaperBag {...IconSetting} />,
   },
   {
     name: "Customer",
     path: "/dashboard/customer",
-    icon: <IconReceipt />,
+    icon: <IconReceipt {...IconSetting} />,
   },
 ];

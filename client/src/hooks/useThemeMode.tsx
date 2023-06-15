@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-const useThemeMode = () => {
+export const useThemeMode = () => {
+  // Get the stored theme, if available
   const [theme, setTheme] = useState(localStorage.theme);
   const colorTheme = theme === "dark" ? "light" : "dark";
+
+  // Function --> Update the current theme of app
+  const $toggleTheme = () => setTheme((current: string) => (current === "dark" ? "light" : "dark"));
 
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove(colorTheme);
-    // root
-  });
+    root.classList.add(theme);
 
-  return <div>useThemeMode</div>;
+    localStorage.setItem("theme", theme);
+  }, [theme, colorTheme]);
+
+  return { $toggleTheme };
 };
-
-export default useThemeMode;

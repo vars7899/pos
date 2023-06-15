@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { IconBallVolleyball, IconSun } from "@tabler/icons-react";
 
-const DashboardNavbar = () => {
+interface DashboardNavbarProps {
+  $toggleTheme?(): void;
+}
+
+const DashboardNavbar = ({ $toggleTheme }: DashboardNavbarProps) => {
   const [currentDate] = useState<string>(Date());
   return (
     <div className="px-6 border-b-[1px] h-[75px] flex items-center justify-between">
@@ -15,7 +19,7 @@ const DashboardNavbar = () => {
           <p className="text-lg font-medium">Vaibhav Dhiman</p>
           <p className="text-sm text-zinc-500">{currentDate.slice(0, 15).replace(/-/g, "/")}</p>
         </div>
-        <button className="rounded-md border-[1px] p-3">
+        <button className="rounded-md border-[1px] p-3" onClick={$toggleTheme}>
           <IconSun />
         </button>
       </div>

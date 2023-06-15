@@ -20,8 +20,7 @@ export { default as DashboardSidebar } from "./DashboardComponents/DashboardSide
 export { default as DashboardNavbar } from "./DashboardComponents/DashboardNavbar";
 
 // Employee Components
-export * as Employee from "./EmployeeComponents";
-
+export * as Employee from "./Employee";
 export * as Auth from "./Auth";
 export * as Brand from "./BrandComponents";
 export * as Default from "./Default";

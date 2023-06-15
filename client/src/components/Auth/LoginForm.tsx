@@ -32,7 +32,7 @@ export const LoginForm = (props: LoginFormProps) => {
         className="mt-4"
       />
       <div className="text-end mt-2 font-medium underline">Forgot Password?</div>
-      <Components.Default.Button title="Log in" onClick={props.$handleSubmit} className="mt-20" />
+      <Components.Default.Button children="Log in" onClick={props.$handleSubmit} className="mt-20 w-[100%]" />
       <p className="text-sm text-zinc-600 mt-2 text-start">
         You have accepted the terms and conditions stated in this agreement between register ox and its partner
         companies by logging in.

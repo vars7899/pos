@@ -12,7 +12,7 @@ import { REGISTER_USER } from "../../redux/feature/authSlice";
 import { AppDispatch } from "../../redux/store";
 import * as Layout from "../../layouts";
 
-const UserRegistration: React.FC = () => {
+export const UserRegistration: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = React.useState<Types.RegisterUserData>(DefaultData.RegisterUserData);
 
@@ -138,4 +138,3 @@ const UserRegistration: React.FC = () => {
   );
 };
 
-export default UserRegistration;

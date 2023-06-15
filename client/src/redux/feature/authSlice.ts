@@ -26,7 +26,10 @@ export const LOGIN_USER = createAsyncThunk("AUTH/LOGIN_USER", async (data: Types
     return await authFeature.loginUser(data);
   } catch (error: any) {
     const message =
-      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      (error.response && error.response.data && error.response.data.message) ||
+      error.response.data.error ||
+      error.message ||
+      error.toString();
     return thunkAPI.rejectWithValue(message);
   }
 });

@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 import { AppDispatch } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 
-const UserLogin = () => {
+export const UserLogin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { isSuccess, isError, message } = useSelector((state: any) => state.auth);
@@ -40,12 +40,14 @@ const UserLogin = () => {
   // side effect
   useEffect(() => {
     if (isSuccess) {
-      navigate("/dashboard/home");
+      navigate("/dashboard/overview");
       dispatch(AuthActions.RESET_AUTH_FLAGS());
+      setFormData(DefaultData.UserLoginData);
     }
     if (isError) {
-      toast(`OOPS!!!, Something went wrong, ${message}`);
+      toast.error(`OOPS!!!, Something went wrong, ${message}`);
       dispatch(AuthActions.CLEAR_AUTH_ERROR());
+      setFormData(DefaultData.UserLoginData);
     }
   }, [navigate, dispatch, isSuccess, isError]);
 
@@ -81,5 +83,3 @@ const UserLogin = () => {
     </Layout.AuthLayout>
   );
 };
-
-export default UserLogin;

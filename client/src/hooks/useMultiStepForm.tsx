@@ -1,6 +1,6 @@
 import React from "react";
 
-const useMultiStepForm = (steps: React.ReactNode[]) => {
+export const useMultiStepForm = (steps: React.ReactNode[]) => {
   const [currentStep, setCurrentStep] = React.useState(0);
 
   function $nextStep() {
@@ -32,5 +32,3 @@ const useMultiStepForm = (steps: React.ReactNode[]) => {
     $jumpTo,
   };
 };
-
-export default useMultiStepForm;

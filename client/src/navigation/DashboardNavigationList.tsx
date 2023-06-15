@@ -1,20 +1,10 @@
 import { NavigationOptionList } from "./Navigation";
-import {
-  IconArmchair,
-  IconLayoutGrid,
-  IconReceipt,
-  IconClock,
-  IconPaperBag,
-  IconDashboard,
-  IconUser,
-  IconBooks,
-  IconSettings,
-} from "@tabler/icons-react";
+import { IconReceipt, IconPaperBag, IconDashboard, IconUser, IconBooks, IconSettings } from "@tabler/icons-react";
 
 export const DashboardNavigationList: NavigationOptionList = [
   {
-    name: "Business Dashboard",
-    path: "/dashboard/home",
+    name: "Business Overview",
+    path: "/dashboard/overview",
     icon: <IconDashboard />,
   },
   {

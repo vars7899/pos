@@ -11,7 +11,7 @@ interface LabeledButtonProps {
 
 export const LabeledInput = (props: LabeledButtonProps) => {
   return (
-    <div className={`formControl ${props.className}`}>
+    <div className={`formControl mb-4 ${props.className}`}>
       <label className="inputLabel capitalize">{props.label}</label>
       <input
         className="outlineInput"

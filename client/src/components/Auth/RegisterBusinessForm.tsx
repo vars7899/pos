@@ -1,14 +1,13 @@
-import { IconBuildingStore, IconHome, IconBuildingFactory2 } from "@tabler/icons-react";
-import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import * as Data from "../../global/registerStepData";
-import FormHeaderSection from "./FormHeaderSection";
-import RegisterInput from "./RegisterInput";
+import React from "react";
+import * as Components from "../";
 import * as Types from "../../global/types";
+import * as Data from "../../global/registerStepData";
+import { IconBuildingStore, IconHome, IconBuildingFactory2 } from "@tabler/icons-react";
 
 interface BusinessInformationFormProps {
   formData: Types.RegisterUserData;
-  $updateFormData: (e: ChangeEvent<HTMLInputElement>) => void;
-  setFormData: Dispatch<SetStateAction<Types.RegisterUserData>>;
+  $updateFormData: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  setFormData: React.Dispatch<React.SetStateAction<Types.RegisterUserData>>;
 }
 
 const companySizeOptions: Types.CompanySizeOptions[] = [
@@ -29,24 +28,25 @@ const companySizeOptions: Types.CompanySizeOptions[] = [
   },
 ];
 
-const BusinessInformationForm = (props: BusinessInformationFormProps) => {
+export const BusinessInformationForm = (props: BusinessInformationFormProps) => {
   function $selectCompanySize(value: string) {
     props.setFormData((prev) => ({ ...prev, ["companySize"]: value }));
   }
 
   return (
     <div className="w-[100%]">
-      <FormHeaderSection data={Data.registerData[2]} />
-      <div className="pt-12">
-        <RegisterInput
+      <Components.Auth.RegisterFormHeader data={Data.registerData[2]} />
+      <div className="pt-4">
+        <Components.Default.LabeledInput
           inputType="text"
           label="Brand Name"
           name="companyName"
           value={props.formData.companyName}
           onChange={props.$updateFormData}
           placeHolder="Enter your brand name"
+          className="my-2"
         />
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="number"
           label="How long have you been in business for?"
           name="companyLifeSpan"
@@ -54,6 +54,7 @@ const BusinessInformationForm = (props: BusinessInformationFormProps) => {
           onChange={props.$updateFormData}
           placeHolder="Enter number of years"
           min={0}
+          className="my-2"
         />
         <div>
           <label className="inputLabel">Company Size</label>
@@ -76,5 +77,3 @@ const BusinessInformationForm = (props: BusinessInformationFormProps) => {
     </div>
   );
 };
-
-export default BusinessInformationForm;

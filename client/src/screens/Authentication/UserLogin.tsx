@@ -60,14 +60,23 @@ const UserLogin = () => {
             duration: 1,
           },
         }}
-        className="pt-20 px-14 bg-white backdrop-blur-3xl"
+        className="px-14 bg-white backdrop-blur-3xl"
       >
-        <Components.Brand.BrandLogo IconSize={60} textSize="text-4xl" />
-        <div className="mt-20 mb-12">
-          <p className="mt-16 text-5xl font-semibold mb-2">Welcome Back</p>
+        <Components.Brand.BrandLogo
+          IconSize={24}
+          textSize="text-2xl"
+          color="text-zinc-950"
+          className="flex justify-center items-center pb-6 mb-10 border-b-[1px] pt-10 w-[100%]"
+        />
+        <div className="mt-16 mb-12 font-beVietnam">
+          <p className="mt-16 text-6xl font-semibold mb-2">Welcome Back</p>
           <p className="text-zinc-600">In order to access your dashboard, you will need to enter your credential</p>
         </div>
-        <Components.UserLoginForm formData={formData} $updateFormData={$updateFormData} $handleSubmit={$handleSubmit} />
+        <Components.Auth.LoginForm
+          formData={formData}
+          $updateFormData={$updateFormData}
+          $handleSubmit={$handleSubmit}
+        />
       </motion.div>
     </Layout.AuthLayout>
   );

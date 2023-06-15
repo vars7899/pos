@@ -4,15 +4,16 @@ interface BrandLogoProps {
   IconSize: number;
   textSize: string;
   color: string;
+  className?: string;
 }
 
-const BrandLogo = ({ IconSize = 40, textSize = "text-xl", color }: BrandLogoProps) => {
+export const BrandLogo = ({ IconSize = 40, textSize = "text-xl", color, className }: BrandLogoProps) => {
   return (
-    <div className={`flex items-center justify-center font-normal font-beVietnam ${color}`}>
-      <IconBallVolleyball strokeWidth={1} size={IconSize} />
-      <p className={`ml-1 ${textSize}`}>Register Ox</p>
+    <div className={className}>
+      <div className={`flex items-center font-normal font-beVietnam ${color}`}>
+        <IconBallVolleyball strokeWidth={1} size={IconSize} />
+        <p className={`ml-1 ${textSize}`}>Register Ox</p>
+      </div>
     </div>
   );
 };
-
-export default BrandLogo;

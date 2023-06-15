@@ -14,14 +14,6 @@ export { default as OrderOverview } from "./OrderComponents/OrderOverview";
 export { default as OrderTableFeatures } from "./OrderComponents/OrderTableFeatures";
 export { default as OrderTotalSection } from "./OrderComponents/OrderTotalSection";
 
-// Authentication Components
-export { default as GeneralInformationForm } from "./Auth/GeneralInformationForm";
-export { default as BusinessInformationForm } from "./Auth/BusinessInformationForm";
-export { default as MoveToNextStepButton } from "./Auth/RegisterStepNavigation";
-export { default as UserVerificationForm } from "./Auth/UserVerificationForm";
-export { default as ContactInformationForm } from "./Auth/ContactInformationForm";
-export { default as SetupPasswordForm } from "./Auth/SetupPasswordForm";
-export { default as UserLoginForm } from "./Auth/UserLoginForm";
 
 // Dashboard Components
 export { default as DashboardSidebar } from "./DashboardComponents/DashboardSidebar";

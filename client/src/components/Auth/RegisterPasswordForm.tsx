@@ -1,15 +1,13 @@
-import { ChangeEvent } from "react";
+import * as Components from "..";
 import * as Types from "../../global/types";
 import * as Data from "../../global/registerStepData";
-import FormHeaderSection from "./FormHeaderSection";
-import RegisterInput from "./RegisterInput";
 
 interface SetupPasswordFormProps {
   formData: Types.RegisterUserData;
-  $updateFormData(e: ChangeEvent<HTMLInputElement>): void;
+  $updateFormData(e: React.ChangeEvent<HTMLInputElement>): void;
 }
 
-const passwordRecommendationList = [
+const passwordRecommendationList: { body: string }[] = [
   { body: "minimum 8 characters" },
   { body: "maximum 32 characters" },
   { body: "at least 1 lowercase letter (a - z)" },
@@ -18,11 +16,11 @@ const passwordRecommendationList = [
   { body: "at least 1 special character (%, &, ! etc)" },
 ];
 
-const SetupPasswordForm = (props: SetupPasswordFormProps) => {
+export const SetupPasswordForm = (props: SetupPasswordFormProps) => {
   return (
     <div>
-      <FormHeaderSection data={Data.registerData[3]} />
-      <div className="pt-12">
+      <Components.Auth.RegisterFormHeader data={Data.registerData[3]} />
+      <div className="pt-4">
         <div className="border-[1px] px-8 py-6 rounded-md mb-6">
           <p className="text-lg font-medium mb-2 text-zinc-800">Password Recommendation</p>
           <ul className="list-disc ml-5">
@@ -33,7 +31,7 @@ const SetupPasswordForm = (props: SetupPasswordFormProps) => {
             ))}
           </ul>
         </div>
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="password"
           label="password"
           name="password"
@@ -41,7 +39,7 @@ const SetupPasswordForm = (props: SetupPasswordFormProps) => {
           onChange={props.$updateFormData}
           placeHolder="Enter a strong password"
         />
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="password"
           label="confirm password"
           name="confirmPassword"
@@ -53,5 +51,3 @@ const SetupPasswordForm = (props: SetupPasswordFormProps) => {
     </div>
   );
 };
-
-export default SetupPasswordForm;

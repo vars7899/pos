@@ -1,21 +1,19 @@
-import { ChangeEvent } from "react";
+import * as Components from "../";
 import * as Types from "../../global/types";
-import FormHeaderSection from "./FormHeaderSection";
 import * as Data from "../../global/registerStepData";
-import RegisterInput from "./RegisterInput";
 
 type GeneralInformationFormProps = {
   formData: Types.RegisterUserData;
-  $updateFormData: (e: ChangeEvent<HTMLInputElement>) => void;
+  $updateFormData: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const GeneralInformationForm = (props: GeneralInformationFormProps) => {
+export const GeneralInformationForm = (props: GeneralInformationFormProps) => {
   return (
     <div>
-      <FormHeaderSection data={Data.registerData[0]} />
-      <div className="pt-12">
+      <Components.Auth.RegisterFormHeader data={Data.registerData[0]} />
+      <div className="pt-4">
         <div className="grid grid-cols-2 gap-4">
-          <RegisterInput
+          <Components.Default.LabeledInput
             inputType="text"
             label="first name"
             name="firstName"
@@ -23,7 +21,7 @@ const GeneralInformationForm = (props: GeneralInformationFormProps) => {
             onChange={props.$updateFormData}
             placeHolder="John"
           />
-          <RegisterInput
+          <Components.Default.LabeledInput
             inputType="text"
             label="last name"
             name="lastName"
@@ -32,7 +30,7 @@ const GeneralInformationForm = (props: GeneralInformationFormProps) => {
             placeHolder="Doe"
           />
         </div>
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="email"
           label="Email"
           name="email"
@@ -40,7 +38,7 @@ const GeneralInformationForm = (props: GeneralInformationFormProps) => {
           onChange={props.$updateFormData}
           placeHolder="johndoe@registerox.com"
         />
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="email"
           label="confirm email"
           name="confirmEmail"
@@ -48,7 +46,7 @@ const GeneralInformationForm = (props: GeneralInformationFormProps) => {
           onChange={props.$updateFormData}
           placeHolder="johndoe@registerox.com"
         />
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="number"
           label="Phone Number"
           name="phoneNumber"
@@ -56,7 +54,7 @@ const GeneralInformationForm = (props: GeneralInformationFormProps) => {
           onChange={props.$updateFormData}
           placeHolder="Enter street address"
         />
-        <RegisterInput
+        <Components.Default.LabeledInput
           inputType="date"
           label="Date of Birth"
           name="dob"
@@ -68,5 +66,3 @@ const GeneralInformationForm = (props: GeneralInformationFormProps) => {
     </div>
   );
 };
-
-export default GeneralInformationForm;

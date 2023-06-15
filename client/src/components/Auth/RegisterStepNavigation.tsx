@@ -7,7 +7,7 @@ interface RegisterStepNavigationProps {
   currentStep: number;
 }
 
-const RegisterStepNavigation = (props: RegisterStepNavigationProps) => {
+export const RegisterStepNavigation = (props: RegisterStepNavigationProps) => {
   const navigate = useNavigate();
   return (
     <div className="flex justify-between items-center py-6 px-16 border-t-[1px] w-[100%]">
@@ -29,5 +29,3 @@ const RegisterStepNavigation = (props: RegisterStepNavigationProps) => {
     </div>
   );
 };
-
-export default RegisterStepNavigation;

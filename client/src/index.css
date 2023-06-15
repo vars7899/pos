@@ -13,7 +13,7 @@
   @apply text-zinc-950 mb-[4px];
 }
 .outlineInput {
-  @apply border-[1px] border-zinc-200 bg-transparent rounded-md text-xl text-zinc-950 px-4 py-3;
+  @apply border-[1px] border-zinc-200 bg-transparent rounded-md text-base text-zinc-950 px-[16px] py-[10px];
 }
 .formControl{
   @apply flex flex-col

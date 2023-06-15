@@ -1,4 +1,4 @@
-const UserVerificationForm = () => {
+export const RegisterVerificationForm = () => {
   return (
     <div>
       <div>
@@ -8,5 +8,3 @@ const UserVerificationForm = () => {
     </div>
   );
 };
-
-export default UserVerificationForm;

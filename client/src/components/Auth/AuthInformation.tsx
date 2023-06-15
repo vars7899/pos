@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
-import * as Components from "../";
+import { motion, AnimatePresence } from "framer-motion";
 import * as Animation from "../../animations";
+import * as Components from "../";
 
 interface AuthInformationProps {
   type: "login" | "register";
@@ -56,7 +56,7 @@ export const AuthInformation = ({ type, registerStepInformation }: AuthInformati
       </motion.div>
       <motion.div
         className="absolute bottom-10 left-10"
-        variants={Animation.fadeIn(2)}
+        variants={Animation.fadeIn(3)}
         initial="initial"
         animate="animate"
       >

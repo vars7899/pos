@@ -1,7 +1,7 @@
+import React from "react";
 import { passwordStrength } from "check-password-strength";
 import * as DefaultData from "../../global/defaultData";
 import * as Data from "../../global/registerStepData";
-import React, { useState, FormEvent } from "react";
 import * as Component from "../../components";
 import * as Functions from "../../functions";
 import * as Types from "../../global/types";
@@ -14,25 +14,25 @@ import * as Layout from "../../layouts";
 
 const UserRegistration: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [formData, setFormData] = useState<Types.RegisterUserData>(DefaultData.RegisterUserData);
+  const [formData, setFormData] = React.useState<Types.RegisterUserData>(DefaultData.RegisterUserData);
 
   // Custom Multi Step Hook
   const { currentStep, step, totalSteps, $nextStep, $prevStep, $jumpTo } = Hooks.useMultiStepForm([
-    <Component.GeneralInformationForm formData={formData} $updateFormData={$updateFormData} />,
-    <Component.ContactInformationForm formData={formData} $updateFormData={$updateFormData} />,
-    <Component.BusinessInformationForm
+    <Component.Auth.GeneralInformationForm formData={formData} $updateFormData={$updateFormData} />,
+    <Component.Auth.ContactInformationForm formData={formData} $updateFormData={$updateFormData} />,
+    <Component.Auth.BusinessInformationForm
       formData={formData}
       $updateFormData={$updateFormData}
       setFormData={setFormData}
     />,
-    <Component.SetupPasswordForm formData={formData} $updateFormData={$updateFormData} />,
+    <Component.Auth.SetupPasswordForm formData={formData} $updateFormData={$updateFormData} />,
   ]);
 
   function $updateFormData(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
-  function $handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function $handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (currentStep === totalSteps - 1) {
       if (
@@ -116,28 +116,26 @@ const UserRegistration: React.FC = () => {
         stepInformationArray: Data.registerData,
       }}
     >
-      <div className="w-[100%] flex flex-col justify-between items-center">
-        <form onSubmit={(e) => $handleSubmit(e)} className="px-16 pt-12">
-          {step}
-        </form>
-        <Component.MoveToNextStepButton $nextStep={$handleSubmit} $prevStep={$prevStep} currentStep={currentStep} />
+      <div className="w-[100%] h-[100%] flex flex-col justify-between items-center">
+        <div>
+          <Component.Brand.BrandLogo
+            IconSize={24}
+            textSize="text-2xl"
+            color="text-zinc-950"
+            className="flex justify-center items-center pb-6 mb-10 border-b-[1px] pt-10 w-[100%]"
+          />
+          <form onSubmit={(e) => $handleSubmit(e)} className="px-16">
+            {step}
+          </form>
+        </div>
+        <Component.Auth.RegisterStepNavigation
+          $nextStep={$handleSubmit}
+          $prevStep={$prevStep}
+          currentStep={currentStep}
+        />
       </div>
     </Layout.AuthLayout>
   );
 };
 
 export default UserRegistration;
-
-{
-  /* <Component.RegisterStepInformation
-        currentStep={currentStep}
-        totalSteps={totalSteps}
-        stepInformationArray={Data.registerData}
-      />
-      <div className="w-[100%] flex flex-col justify-between items-center">
-        <form onSubmit={(e) => $handleSubmit(e)} className="px-16 pt-12">
-          {step}
-        </form>
-        <Component.MoveToNextStepButton $nextStep={$handleSubmit} $prevStep={$prevStep} currentStep={currentStep} />
-      </div> */
-}

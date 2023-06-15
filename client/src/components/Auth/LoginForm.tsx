@@ -3,13 +3,13 @@ import * as Types from "../../global/types";
 import * as Components from "..";
 import { ChangeEvent } from "react";
 
-interface UserLoginFormProps {
+interface LoginFormProps {
   formData: Types.UserLoginData;
   $updateFormData(e: ChangeEvent<HTMLInputElement>): void;
   $handleSubmit(e: any): void;
 }
 
-const UserLoginForm = (props: UserLoginFormProps) => {
+export const LoginForm = (props: LoginFormProps) => {
   const navigate = useNavigate();
 
   return (
@@ -48,5 +48,3 @@ const UserLoginForm = (props: UserLoginFormProps) => {
     </div>
   );
 };
-
-export default UserLoginForm;

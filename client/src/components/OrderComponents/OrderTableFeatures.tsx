@@ -1,5 +1,4 @@
 import { IconScan, IconEdit, IconReceipt, IconTrash } from "@tabler/icons-react";
-import { hideStringOverflow } from "../../functions/HideStringOverflow";
 import { TableDetails } from "../../global/types";
 
 type OrderTableFeaturesProps = {
@@ -16,7 +15,7 @@ const OrderTableFeatures = ({ selectedTable }: OrderTableFeaturesProps) => {
     <div className="flex items-center justify-between border-b-[1px] px-4 h-[70px] ">
       <div className="flex flex-col justify-center">
         <p className="text-xl font-semibold">Table {selectedTable.tableNumber}</p>
-        <p className="capitalize text-xs text-slate-600 font-medium">{hideStringOverflow("johnhansen flamingo")}</p>
+        <p className="capitalize text-xs text-slate-600 font-medium">{"johnhansen flamingo"}</p>
       </div>
       <div className="grid grid-cols-4 justify-stretch">
         <div className="centerOut px-3">

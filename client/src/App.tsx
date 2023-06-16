@@ -1,12 +1,12 @@
 import "./App.css";
 import { useEffect } from "react";
 import * as Screen from "./screens";
+import { AppDispatch } from "./redux/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "./redux/store";
 import { CHECK_USER_STATUS } from "./redux/feature/authSlice";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();

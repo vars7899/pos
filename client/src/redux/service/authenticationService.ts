@@ -10,3 +10,8 @@ export const loginUser = async (data: Types.LoginUserData) => {
   const response = await axios.post("/api/v1/user", data);
   return response.data;
 };
+
+export const checkUserLoginStatus = async () => {
+  const response = await axios.get("/api/v1/user/check-login-status");
+  return response.data;
+};

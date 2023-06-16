@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginUser = exports.registerNewUser = void 0;
+exports.checkLoginStatus = exports.loginUser = exports.registerNewUser = void 0;
 const http_errors_1 = __importDefault(require("http-errors"));
 const Address_model_1 = __importDefault(require("../models/Address.model"));
 const User_model_1 = __importDefault(require("../models/User.model"));
@@ -94,3 +94,15 @@ const loginUser = (req, res, next) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.loginUser = loginUser;
+// @desc      GET User login status
+// @route     /user/check-login-status
+// @access    private
+const checkLoginStatus = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        (0, sendToken_1.default)(res, req.user, 200, "User is logged In");
+    }
+    catch (error) {
+        next(error);
+    }
+});
+exports.checkLoginStatus = checkLoginStatus;

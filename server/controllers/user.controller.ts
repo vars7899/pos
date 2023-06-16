@@ -95,3 +95,16 @@ export const loginUser: RequestHandler<{}, {}, LoginUserRequest, {}> = async (re
     next(error);
   }
 };
+
+
+// @desc      GET User login status
+// @route     /user/check-login-status
+// @access    private
+export const checkLoginStatus: RequestHandler = async (req: any, res, next) => {
+  try {
+    sendToken(res, req.user, 200, "User is logged In");
+    
+  } catch (error) {
+    next(error)
+  }
+};

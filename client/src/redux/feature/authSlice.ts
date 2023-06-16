@@ -34,6 +34,19 @@ export const LOGIN_USER = createAsyncThunk("AUTH/LOGIN_USER", async (data: Types
   }
 });
 
+export const CHECK_USER_STATUS = createAsyncThunk("AUTH/CHECK_USER_STATUS", async (_, thunkAPI) => {
+  try {
+    return await authFeature.checkUserLoginStatus();
+  } catch (error: any) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.response.data.error ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
 const authSlice = createSlice({
   name: "Auth",
   initialState,
@@ -80,6 +93,23 @@ const authSlice = createSlice({
       state.isAuthenticated = false;
     });
     builder.addCase(LOGIN_USER.fulfilled, (state, action: any) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.message = action.payload.message;
+      state.user = action.payload.user;
+      state.isAuthenticated = true;
+    });
+    // CHECK_USER_STATUS case
+    builder.addCase(CHECK_USER_STATUS.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(CHECK_USER_STATUS.rejected, (state, action: any) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+      state.isAuthenticated = false;
+    });
+    builder.addCase(CHECK_USER_STATUS.fulfilled, (state, action: any) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.message = action.payload.message;

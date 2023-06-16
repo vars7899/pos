@@ -11,7 +11,7 @@ export const InfoBox = ({ title, children }: InfoBoxProps) => {
       <p className="border-b-[1px] border-black dark:bg-neutral-800 dark:text-neutral-200 text-xl px-8 py-4 capitalize">
         {title}
       </p>
-      <div className="dark:bg-neutral-900 px-8 py-4">{children}</div>
+      <div className="dark:bg-neutral-900 p-8">{children}</div>
     </div>
   );
 };

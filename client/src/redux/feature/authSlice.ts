@@ -16,7 +16,10 @@ export const REGISTER_USER = createAsyncThunk("AUTH/REGISTER_USER", async (data:
     return await authFeature.registerNewUser(data);
   } catch (error: any) {
     const message =
-      (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+      (error.response && error.response.data && error.response.data.message) ||
+      error.response.data.error ||
+      error.message ||
+      error.toString();
     return thunkAPI.rejectWithValue(message);
   }
 });

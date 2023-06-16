@@ -12,12 +12,13 @@ import Table from "../models/Table.model";
 interface CreateNewStoreRequest {
   name: string;
   address: IAddress;
+  currency: string;
 }
 export const createNewStore: RequestHandler<{}, {}, CreateNewStoreRequest, {}> = async (req: any, res, next) => {
-  const { name, address } = req.body;
   try {
+    const { name, address, currency } = req.body;
     // ! Check all the required fields
-    if (!name || !address) {
+    if (!name || !currency) {
       throw createHttpError(400, "Missing one or more required field(s)");
     }
     const { street, city, state, country, postalCode } = address;
@@ -32,7 +33,9 @@ export const createNewStore: RequestHandler<{}, {}, CreateNewStoreRequest, {}> =
 
     // ! Create the new store
     const associatedAddress = await Address.create(address);
-    const newStore = await Store.create({ name, address: associatedAddress, owner: req.user._id });
+
+    req.body.address = associatedAddress;
+    const newStore = await Store.create({ ...req.body, owner: req.user._id });
 
     res.status(201).json({
       success: true,

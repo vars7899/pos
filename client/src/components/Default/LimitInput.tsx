@@ -4,7 +4,7 @@ interface LimitInputProps {
   inputType: string;
   name: string;
   value: string;
-  onChange(e: any): any;
+  onChange?(e: any): any;
   placeHolder: string;
   className?: string;
   min?: number;

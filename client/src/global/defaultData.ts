@@ -26,3 +26,33 @@ export const UserLoginData: Types.UserLoginData = {
   email: "",
   password: "",
 };
+
+export const NewAddressDetails: Types.Address = {
+  street: "",
+  addressLine: "",
+  city: "",
+  state: "",
+  country: "",
+  postalCode: "",
+};
+export const NewStoreChargeDetails = {
+  taxes: "",
+};
+
+export const NewStoreDetails: Types.NewStoreInfo = {
+  name: "",
+  slogan: "",
+  website: "",
+  currency: "",
+  status: false,
+  days: {
+    mon: false,
+    tue: false,
+    wed: false,
+    thur: false,
+    fri: false,
+    sat: false,
+    sun: false,
+  },
+  allowPickupOrder: false,
+};

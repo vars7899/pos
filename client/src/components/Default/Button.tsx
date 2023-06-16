@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 
 interface ButtonProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   type?: "filled" | "outline" | "link";
   onClick?(e: any): any;
-  className: string;
+  className?: string;
+  actionType?: "button" | "submit" | "reset" | undefined;
 }
 
-export const Button = ({ children, type = "filled", onClick, className }: ButtonProps) => {
+export const Button = ({ children, type = "filled", onClick, className, actionType = "button" }: ButtonProps) => {
   return (
     <motion.button
       whileTap={{ scale: 0.99 }}
@@ -19,6 +20,7 @@ export const Button = ({ children, type = "filled", onClick, className }: Button
           : null
       } ${className}`}
       onClick={onClick}
+      type={actionType}
     >
       {children}
     </motion.button>

@@ -13,7 +13,7 @@ const StoreSchema = new mongoose.Schema(
       type: String,
       maxLength: [100, "Store slogan has a maximum character limit of 100"],
     },
-    storeUrl: {
+    website: {
       type: String,
     },
     currency: {
@@ -39,7 +39,7 @@ const StoreSchema = new mongoose.Schema(
       sat: { type: Boolean, default: false, required: true },
       sun: { type: Boolean, default: false, required: true },
     },
-    allowPickupOrders: { type: Boolean, default: false, required: true },
+    allowPickupOrder: { type: Boolean, default: false, required: true },
     charges: {
       taxes: { type: Number, default: 0 },
     },
@@ -61,5 +61,5 @@ const StoreSchema = new mongoose.Schema(
 
 type IStore = mongoose.InferSchemaType<typeof StoreSchema>;
 
-const Store = mongoose.model<IStore>("restaurant", StoreSchema);
+const Store = mongoose.model<IStore>("store", StoreSchema);
 export default Store;

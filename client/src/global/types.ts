@@ -76,3 +76,43 @@ export interface UserLoginData {
   email: string;
   password: string;
 }
+
+export interface Address {
+  street: string;
+  addressLine: string;
+  city: string;
+  state: string;
+  country: string;
+  postalCode: string;
+}
+
+export interface StoreDays {
+  mon: boolean;
+  tue: boolean;
+  wed: boolean;
+  thur: boolean;
+  fri: boolean;
+  sat: boolean;
+  sun: boolean;
+}
+
+export interface StoreCharges {
+  taxes: string;
+}
+export interface NewStoreInfo {
+  name: string;
+  slogan: string;
+  website: string;
+  currency: string;
+  status: boolean;
+  days: StoreDays;
+  allowPickupOrder: boolean;
+}
+
+export interface NewStoreDetails {
+  address: Address;
+
+  charges: {
+    taxes: string;
+  };
+}

@@ -13,12 +13,12 @@ export const EmployeeList: React.FC = () => {
 
   return (
     <Layout.DashboardLayout isLoading={false}>
-      <div className="bg-white px-6 pt-6">
+      <div className="bg-white dark:bg-Black px-6 pt-6">
         <Component.Default.BreadCrumb />
-        <div className="flex items-start justify-between  mt-4">
+        <div className="flex items-start justify-between mt-4">
           <div>
-            <p className="capitalize text-4xl font-medium">Employee List</p>
-            <p className="mt-4 max-w-6xl text-zinc-600">
+            <p className="capitalize text-4xl font-medium dark:text-neutral-200">Employee List</p>
+            <p className="mt-4 max-w-6xl text-neutral-800 dark:text-neutral-400">
               Employees can be filtered and sorted by their roles in a list of employees that can be filtered by their
               roles This makes it easier to find and assign tasks to the right people. It also helps managers to keep
               track of employee progress and performance. This helps to increase efficiency and productivity in the
@@ -26,11 +26,11 @@ export const EmployeeList: React.FC = () => {
             </p>
           </div>
           <Component.Default.Button
-            className="font-medium rounded-md py-3 px-5 flex items-center justify-center bg-zinc-950 text-white"
+            className="flex items-center justify-center"
             onClick={() => navigate("/dashboard/employee/create")}
           >
-            <div className="flex items-center">
-              <IconPlus />
+            <div className="flex items-center text-sm">
+              <IconPlus size={20} />
               <p className="ml-2 tracking-wider">Add Employee</p>
             </div>
           </Component.Default.Button>

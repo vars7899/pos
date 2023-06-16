@@ -1,6 +1,6 @@
 export const AllEmployeeList = () => {
   return (
-    <div className="w-[100%] bg-white p-6 px-8">
+    <div className="w-[100%] bg-white  p-6 px-8">
       <table className="w-[100%] text-left">
         <thead className="border-b-[1px]">
           <tr>

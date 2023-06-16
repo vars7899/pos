@@ -5,6 +5,12 @@
 .iconOutlineBtn {
   @apply border-[1px] rounded-lg px-3 py-2;
 }
+.optionBtn {
+  @apply border-[1px] rounded-3xl px-6 py-2 text-neutral-400 dark:text-neutral-600 dark:border-neutral-600 capitalize font-medium
+}
+.optionBtnSelected {
+  @apply border-green-600 bg-green-100 text-green-600 dark:bg-transparent dark:border-green-600 dark:text-green-600
+}
 .centerOut {
   @apply flex items-center justify-center;
 }

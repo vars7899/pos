@@ -17,8 +17,8 @@ const useTabs = (givenTabList: { title: string; component: React.ReactNode }[]) 
         {givenTabList.map((tab, index) => (
           <p
             key={index}
-            className={`border-b-4 py-2 px-8 capitalize w-fit cursor-pointer hover:bg-zinc-100 ${
-              currentTabIndex === index ? "border-emerald-600 text-emerald-600" : "border-none text-zinc-500"
+            className={`border-b-4 py-2 px-8 capitalize w-fit cursor-pointer hover:bg-zinc-100 dark:hover:bg-neutral-800 ${
+              currentTabIndex === index ? "border-rose-600 text-rose-600" : "border-none text-zinc-500"
             }`}
             onClick={() => $jumpTo(index)}
           >

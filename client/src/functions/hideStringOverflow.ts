@@ -1,3 +1,4 @@
-export const hideStringOverflow = (inputString: string) => {
-  if (inputString.length > 10) return inputString.slice(0, 10) + "...";
-};
+export default function (inputString: string, n = 10) {
+  if (inputString.length > n) return inputString.slice(0, n) + "...";
+  return inputString;
+}

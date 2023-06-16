@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import * as Component from "../";
 import Currency from "iso-country-currency";
+import Switch from "react-switch";
+
+const SwitchAtt = {
+  unCheckedIcon: false,
+  checkedIcon: false,
+};
 
 export const NewStoreForm = () => {
   const [formData, setFormData] = useState({
@@ -24,14 +30,14 @@ export const NewStoreForm = () => {
     city: "",
     state: "",
     postalCode: "",
+    allowPickupOrder: false,
+    taxes: "0",
   });
 
   function $updateFormData(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
-
-  console.log(formData);
 
   return (
     <div className="grid gap-3">
@@ -50,6 +56,7 @@ export const NewStoreForm = () => {
             limit
             maxLength={20}
             minLength={4}
+            className="w-[100%]"
           />
         </Component.Default.OptionBox>
         <Component.Default.OptionBox
@@ -66,6 +73,7 @@ export const NewStoreForm = () => {
             limit
             maxLength={80}
             minLength={0}
+            className="w-[100%]"
           />
         </Component.Default.OptionBox>
         <Component.Default.OptionBox className="mt-4" title="store URL" subtitle="Your store external website">
@@ -75,6 +83,7 @@ export const NewStoreForm = () => {
             inputType="url"
             onChange={$updateFormData}
             placeHolder="Eg. www.amazon.com"
+            className="w-[100%]"
           />
         </Component.Default.OptionBox>
         <Component.Default.OptionBox
@@ -89,7 +98,7 @@ export const NewStoreForm = () => {
             className="border-[1px] border-zinc-200 bg-neutral-900 rounded-md text-base text-zinc-950 px-[16px] py-[10px] dark:border-neutral-600 dark:text-neutral-400 dark:placeholder:text-neutral-600 dark:focus:border-sky-600 block w-full"
           >
             {Currency.getAllISOCodes().map((curr) => (
-              <option key={curr.numericCode} value={curr.iso}>
+              <option key={curr.iso} value={curr.iso}>
                 {curr.countryName}
               </option>
             ))}
@@ -108,6 +117,7 @@ export const NewStoreForm = () => {
             onChange={$updateFormData}
             placeHolder="Eg. ₹ INR"
             disabled
+            className="w-[100%]"
           />
         </Component.Default.OptionBox>
         <Component.Default.OptionBox
@@ -116,14 +126,13 @@ export const NewStoreForm = () => {
           subtitle="Providing the address details for your store will assist us in getting in touch with you if needed"
           required
         >
-          <div className="grid grid-flow-row gap-4">
+          <div className="grid grid-flow-row gap-4 w-[100%]">
             <Component.Default.LimitInput
               name="street"
               value={formData.street}
               inputType="text"
               onChange={$updateFormData}
               placeHolder="Street Address"
-              disabled
             />
             <Component.Default.LimitInput
               name="addressLine"
@@ -131,7 +140,6 @@ export const NewStoreForm = () => {
               inputType="text"
               onChange={$updateFormData}
               placeHolder="Address Line"
-              disabled
             />
             <Component.Default.LimitInput
               name="city"
@@ -139,7 +147,6 @@ export const NewStoreForm = () => {
               inputType="text"
               onChange={$updateFormData}
               placeHolder="City"
-              disabled
             />
             <Component.Default.LimitInput
               name="state"
@@ -147,7 +154,6 @@ export const NewStoreForm = () => {
               inputType="text"
               onChange={$updateFormData}
               placeHolder="State / Province / Region"
-              disabled
             />
             <Component.Default.LimitInput
               name="postalCode"
@@ -155,7 +161,6 @@ export const NewStoreForm = () => {
               inputType="text"
               onChange={$updateFormData}
               placeHolder="Postal Code"
-              disabled
             />
           </div>
         </Component.Default.OptionBox>
@@ -232,6 +237,42 @@ export const NewStoreForm = () => {
           </div>
         </Component.Default.OptionBox>
       </Component.Default.InfoBox>
+      <Component.Default.InfoBox title="Store Features">
+        <Component.Default.OptionBox title="Pickup Orders" subtitle="Allow customer to place pickup store" required>
+          <div className="flex items-center">
+            <Switch
+              checkedIcon={false}
+              uncheckedIcon={false}
+              checked={formData.allowPickupOrder}
+              onChange={(val) => setFormData((prev) => ({ ...prev, allowPickupOrder: val }))}
+            />
+            <p className="dark:text-neutral-500 ml-4">Order pickup feature at the POS</p>
+          </div>
+        </Component.Default.OptionBox>
+      </Component.Default.InfoBox>
+      <Component.Default.InfoBox title="Store Expenses">
+        <Component.Default.OptionBox
+          title="Taxes"
+          subtitle="Please state the percentage of tax deductible on each order, please state the percentage"
+          required
+        >
+          <Component.Default.LimitInput
+            name="taxes"
+            value={formData.taxes}
+            inputType="number"
+            onChange={$updateFormData}
+            placeHolder="Eg. 12"
+            className="w-[100%]"
+            min={0}
+          />
+        </Component.Default.OptionBox>
+      </Component.Default.InfoBox>
+      <div className="flex items-center justify-end">
+        <Component.Default.Button type="filled">Cancel</Component.Default.Button>
+        <Component.Default.Button type="filled" className="ml-4 bg-green-600 dark:bg-green-600">
+          Create Store
+        </Component.Default.Button>
+      </div>
     </div>
   );
 };

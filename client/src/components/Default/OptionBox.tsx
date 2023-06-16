@@ -19,7 +19,7 @@ export const OptionBox = ({ title, subtitle, children, required = false, classNa
           </p>
           <p className="text-sm dark:text-neutral-600">{subtitle}</p>
         </div>
-        <div className="w-[100%]">{children}</div>
+        <div className="w-full flex items-center">{children}</div>
       </div>
     </div>
   );

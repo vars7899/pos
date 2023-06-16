@@ -14,7 +14,7 @@ const DashboardLayout = ({ isLoading, children }: DashboardLayoutParams) => {
       <Component.Dashboard.Sidebar />
       <div className="h-[100%]">
         <Component.Dashboard.Navbar theme={theme} $toggleTheme={$toggleTheme} />
-        <div className="dark:bg-UltraDark h-[calc(100vh-75px)]">{children}</div>
+        <div className="dark:bg-UltraDark h-[calc(100vh-75px)] overflow-y-scroll hideScrollbar pb-10">{children}</div>
       </div>
     </div>
   );

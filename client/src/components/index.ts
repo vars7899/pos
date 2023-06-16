@@ -14,7 +14,7 @@ export { default as OrderOverview } from "./OrderComponents/OrderOverview";
 export { default as OrderTableFeatures } from "./OrderComponents/OrderTableFeatures";
 export { default as OrderTotalSection } from "./OrderComponents/OrderTotalSection";
 
-
+export * as Store from "./Store";
 export * as Dashboard from "./Dashboard";
 export * as Employee from "./Employee";
 export * as Auth from "./Auth";

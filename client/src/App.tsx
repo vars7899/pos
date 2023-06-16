@@ -32,6 +32,7 @@ const App: React.FC = () => {
           <Route path="/dashboard/overview" element={<Screen.Dashboard.Overview />} />
           <Route path="/dashboard/employee" element={<Screen.Dashboard.EmployeeList />} />
           <Route path="/dashboard/employee/create" element={<Screen.Dashboard.CreateNewEmployee />} />
+          <Route path="/dashboard/store/create" element={<Screen.Dashboard.CreateNewStore />} />
         </Routes>
       </Router>
       <ToastContainer

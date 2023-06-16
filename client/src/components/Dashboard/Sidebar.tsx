@@ -2,21 +2,24 @@ import { IconBallVolleyball, IconChevronLeft, IconChevronRight } from "@tabler/i
 import { DashboardNavigationList } from "../../navigation/DashboardNavigationList";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { setDashboardExpandSidebar } from "../../redux/feature/appSlice";
 
-interface SidebarProps {
-  expandSidebar: boolean;
-  $toggleSidebar(): void;
-}
-
-export const Sidebar = ({ expandSidebar, $toggleSidebar }: SidebarProps) => {
+export const Sidebar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
+  const { dashboardExpandSidebar } = useSelector((state: any) => state.app);
 
   return (
     <AnimatePresence>
       <motion.div
+        initial={{
+          width: dashboardExpandSidebar ? 80 : 350,
+        }}
         animate={{
-          width: expandSidebar ? 80 : 350,
+          width: dashboardExpandSidebar ? 80 : 350,
           transition: {
             duration: 1.5,
           },
@@ -28,7 +31,7 @@ export const Sidebar = ({ expandSidebar, $toggleSidebar }: SidebarProps) => {
             <IconBallVolleyball strokeWidth={0.75} size={42} />
           </div>
           <AnimatePresence>
-            {!expandSidebar ? (
+            {!dashboardExpandSidebar ? (
               <motion.div
                 initial={{
                   opacity: 0,
@@ -36,12 +39,12 @@ export const Sidebar = ({ expandSidebar, $toggleSidebar }: SidebarProps) => {
                 animate={{
                   opacity: [0, 0.5, 1],
                   transition: {
-                    delay: 1.25,
-                    duration: 1,
+                    delay: dashboardExpandSidebar ? 1.25 : 0,
+                    duration: dashboardExpandSidebar ? 1 : 0,
                   },
                 }}
                 exit={{ opacity: [0.5, 0], transition: { duration: 0.5 } }}
-                className="flex flex-col items-start font-beVietnam pl-2"
+                className="flex flex-col items-start font-beVietnam pl-2 truncate"
               >
                 <p className="pb-[2px]">Register Ox Admin</p>
                 <div className="flex items-center">
@@ -56,9 +59,9 @@ export const Sidebar = ({ expandSidebar, $toggleSidebar }: SidebarProps) => {
         <motion.div
           whileTap={{ scale: 0.9 }}
           className="absolute top-[28px] right-[-14px] bg-neutral-700 p-1 rounded-full text-white cursor-pointer"
-          onClick={$toggleSidebar}
+          onClick={() => dispatch(setDashboardExpandSidebar())}
         >
-          {!expandSidebar ? <IconChevronLeft size={16} /> : <IconChevronRight size={16} />}
+          {!dashboardExpandSidebar ? <IconChevronLeft size={16} /> : <IconChevronRight size={16} />}
         </motion.div>
 
         <div className="mt-4 px-2.5">
@@ -75,7 +78,7 @@ export const Sidebar = ({ expandSidebar, $toggleSidebar }: SidebarProps) => {
               >
                 <div>{tab.icon}</div>
                 <AnimatePresence>
-                  {!expandSidebar ? (
+                  {!dashboardExpandSidebar ? (
                     <motion.p
                       initial={{
                         opacity: 0,
@@ -85,12 +88,12 @@ export const Sidebar = ({ expandSidebar, $toggleSidebar }: SidebarProps) => {
                         opacity: [0, 0.5, 1],
                         display: "block",
                         transition: {
-                          delay: 1.25,
-                          duration: 1,
+                          delay: dashboardExpandSidebar ? 1.25 : 0,
+                          duration: dashboardExpandSidebar ? 1 : 0,
                         },
                       }}
                       exit={{ opacity: [0.5, 0], transition: { duration: 0.5 } }}
-                      className="ml-4 font-medium"
+                      className="ml-4 font-medium overflow-hidden whitespace-nowrap"
                     >
                       {tab.name}
                     </motion.p>

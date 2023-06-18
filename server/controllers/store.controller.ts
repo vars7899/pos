@@ -164,7 +164,7 @@ export const getStoreDetails: RequestHandler<GetStoreDetailsParams, {}, {}, {}> 
 // @access      private
 export const getAllUserStore: RequestHandler<{}, {}, {}, {}> = async (req: any, res, next) => {
   try {
-    const storeList = await Store.find({ owner: req.user._id });
+    const storeList = await Store.find({ owner: req.user._id }).populate("address");
     res.status(200).json({
       success: true,
       message: "List of store was fetched successfully",

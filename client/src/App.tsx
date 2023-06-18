@@ -36,6 +36,7 @@ const App: React.FC = () => {
           {/* AUTHENTICATION SCREENS */}
           <Route path="/dashboard/login" element={<Screen.Auth.UserLogin />} />
           <Route path="/dashboard/register" element={<Screen.Auth.UserRegistration />} />
+          <Route path="/dashboard/verify" element={<Screen.Auth.UserVerification />} />
           {/* DASHBOARD SCREENS */}
           <Route path="/dashboard/overview" element={<Screen.Dashboard.Overview />} />
           <Route path="/dashboard/employee" element={<Screen.Dashboard.EmployeeList />} />

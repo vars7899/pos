@@ -7,14 +7,22 @@ import { ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { CHECK_USER_STATUS } from "./redux/feature/authSlice";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { GET_USER_STORE_LIST } from "./redux/feature/storeSlice";
 
 const App: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const {} = useSelector((state: any) => state.auth);
+  const { isAuthenticated } = useSelector((state: any) => state.auth);
 
   useEffect(() => {
     dispatch(CHECK_USER_STATUS());
   }, []);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      dispatch(GET_USER_STORE_LIST());
+      // Get information of the first store
+    }
+  }, [isAuthenticated]);
 
   return (
     <>

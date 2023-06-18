@@ -21,8 +21,9 @@ export const AuthInformation = ({ type, registerStepInformation }: AuthInformati
         className="absolute top-0 left-0 bg-sky-600/60 h-60 w-60 rounded-full"
       ></motion.div>
       <motion.div
-        variants={Animation.backgroundBubble("50%", "50%", [3, 1.5, 4], [-100, -200, -100, 0], [100, 200, 200, 0])}
+        variants={Animation.backgroundBubble("50%", "50%", [1, 1.5, 2], [0, -50, -100, 0], [100, 200, 200, 0])}
         initial="initial"
+        animate="animate"
         className="absolute bottom-0 right-0 bg-rose-600/80 h-60 w-60 rounded-full"
       ></motion.div>
       <div className="absolute h-[100%] w-[100%] bg-white/5 backdrop-blur-3xl"></div>

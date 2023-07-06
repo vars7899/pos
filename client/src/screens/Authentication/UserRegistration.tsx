@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { passwordStrength } from "check-password-strength";
 import * as DefaultData from "../../global/defaultData";
 import * as Data from "../../global/registerStepData";
 import * as Component from "../../components";
 import * as Functions from "../../functions";
 import * as Types from "../../global/types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import * as Hooks from "../../hooks";
-import { REGISTER_USER } from "../../redux/feature/authSlice";
+import { REGISTER_USER, RESET_AUTH_FLAGS } from "../../redux/feature/authSlice";
 import { AppDispatch } from "../../redux/store";
 import * as Layout from "../../layouts";
+import { useNavigate } from "react-router-dom";
 
 export const UserRegistration: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const [formData, setFormData] = React.useState<Types.RegisterUserData>(DefaultData.RegisterUserData);
+  const { isSuccess, isError, message } = useSelector((state: any) => state.auth);
 
   // Custom Multi Step Hook
   const { currentStep, step, totalSteps, $nextStep, $prevStep, $jumpTo } = Hooks.useMultiStepForm([
@@ -107,6 +110,16 @@ export const UserRegistration: React.FC = () => {
     }
   }
 
+  useEffect(() => {
+    if (isSuccess) {
+      navigate("/dashboard/verify", { replace: true });
+    }
+    if (isError) {
+      toast.error("Error: " + message);
+      dispatch(RESET_AUTH_FLAGS());
+    }
+  }, [isSuccess, isError]);
+
   return (
     <Layout.AuthLayout
       type="register"
@@ -137,4 +150,3 @@ export const UserRegistration: React.FC = () => {
     </Layout.AuthLayout>
   );
 };
-

@@ -1,3 +1,5 @@
+import * as Component from "../";
+
 export const RegisterVerificationForm = () => {
   return (
     <div>
